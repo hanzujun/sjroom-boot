@@ -6,7 +6,7 @@ import cn.sjroom.www.common.IResult;
 /**
  * 参数验证异常
  *
- * @author luobw
+ * @author manson
  */
 public class ArgumetException extends BaseApplicationException {
 

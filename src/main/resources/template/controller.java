@@ -24,7 +24,7 @@ import ${config.servicePackage}.${upperModelName}Service;
  * @date 2018-03-10 18:47
  */
 @RestController
-@RequestMapping("${config.functionPath}${lowerModelName}")
+@RequestMapping("${lowerModelName}")
 public class ${upperModelName}Controller extends AbstractController {
 
     @Autowired

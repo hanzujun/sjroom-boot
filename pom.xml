@@ -5,6 +5,7 @@
 
     <groupId>cn.sjroom.www</groupId>
     <artifactId>sjroom-boot</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

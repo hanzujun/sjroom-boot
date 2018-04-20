@@ -52,24 +52,6 @@ public class AutoGenerator {
          */
         generateCode();
 
-        /**
-         * 自动打开生成文件的目录
-         * <p>
-         * 根据 osName 执行相应命令
-         * </p>
-         */
-//        try {
-//            String osName = System.getProperty("os.name");
-//            if (osName != null) {
-//                if (osName.contains("Mac")) {
-//                    Runtime.getRuntime().exec("open " + config.getSaveDir());
-//                } else if (osName.contains("Windows")) {
-//                    Runtime.getRuntime().exec("cmd /c start " + config.getSaveDir());
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         System.out.println(" generate success! ");
 
     }

@@ -21,8 +21,7 @@ public class GenerateCode {
         configGenerator.setDbSchema("yunying");
 
         configGenerator.setBasePackage("com.dazong.yunying");
-        configGenerator.setFunctionPath("sys");
-        configGenerator.setGenerateTableName("trader_order");
+        configGenerator.setGenerateTableName("sys_user");
 
         new AutoGenerator(configGenerator).run();
     }

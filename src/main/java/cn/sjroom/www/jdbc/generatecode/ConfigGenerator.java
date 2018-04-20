@@ -53,11 +53,6 @@ public class ConfigGenerator {
     private String author;
 
     /**
-     * 功能模板名称
-     */
-    private String functionPath;
-
-    /**
      * 忽略的字段
      */
     private String[] ignoreFieldArr = new String[]{"id", "create_time", "create_user", "update_time", "update_user", "update_date", "create_date", "yn"};
@@ -71,7 +66,7 @@ public class ConfigGenerator {
      * 包名： 实体
      */
     public String getEntityPackage() {
-        return basePackage + packageArr[0] + functionPath;
+        return basePackage + packageArr[0];
     }
 
     /**
@@ -85,7 +80,7 @@ public class ConfigGenerator {
      * 包名： 请求的实体
      */
     public String getRequestEntityPackage() {
-        return basePackage + packageArr[1] + functionPath;
+        return basePackage + packageArr[1] ;
     }
 
     /**
@@ -99,7 +94,7 @@ public class ConfigGenerator {
      * 包名： 响应的实体
      */
     public String getResponseEntityPackage() {
-        return basePackage + packageArr[2] + functionPath;
+        return basePackage + packageArr[2] ;
     }
 
     /**
@@ -113,7 +108,7 @@ public class ConfigGenerator {
      * 包名： mapper
      */
     public String getMapperPackage() {
-        return basePackage + packageArr[3] + functionPath;
+        return basePackage + packageArr[3];
     }
 
     /**
@@ -127,7 +122,7 @@ public class ConfigGenerator {
      * 包名： service
      */
     public String getServicePackage() {
-        return basePackage + packageArr[4] + functionPath;
+        return basePackage + packageArr[4];
     }
 
     /**
@@ -141,7 +136,7 @@ public class ConfigGenerator {
      * 包名： service impl
      */
     public String getServiceImplPackage() {
-        return basePackage + packageArr[4] + functionPath + packageArr[5];
+        return basePackage + packageArr[4] + packageArr[5];
     }
 
     /**
@@ -155,7 +150,7 @@ public class ConfigGenerator {
      * 包名： controller
      */
     public String getControllerPackage() {
-        return basePackage + packageArr[6] + functionPath;
+        return basePackage + packageArr[6] ;
     }
 
     /**
@@ -177,11 +172,6 @@ public class ConfigGenerator {
      */
     public String getEnumPath() {
         return getSaveDir() + packageConvertPath(getEnumPackage());
-    }
-
-
-    public String getFunctionPath() {
-        return packageConvertPath(this.functionPath);
     }
 
     /**
