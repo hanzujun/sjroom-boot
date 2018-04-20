@@ -20,7 +20,7 @@ public class GenerateCode {
         configGenerator.setDbPassword("6qjiaVv6!nlz1JSo");
         configGenerator.setDbSchema("yunying");
 
-        configGenerator.setBasePackage("com.dazong.yunying");
+        configGenerator.setBasePackage("cn.sjroom.www");
         configGenerator.setGenerateTableName("sys_user");
 
         new AutoGenerator(configGenerator).run();

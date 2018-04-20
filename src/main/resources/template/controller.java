@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import com.dazong.common.validator.ValidatorUtils;
+import cn.sjroom.www.common.validator.ValidatorUtils;
 import com.github.pagehelper.Page;
 
 import ${config.basePackage}.common.annotation.SysLog;

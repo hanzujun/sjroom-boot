@@ -1,6 +1,6 @@
 package ${config.mapperPackage};
 
-import com.dazong.persistence.core.BaseMapper;
+import cn.sjroom.www.persistence.core.BaseMapper;
 import ${config.entityPackage}.${upperModelName};
 import ${config.requestEntityPackage}.${upperModelName}Request;
 import ${config.responseEntityPackage}.${upperModelName}Response;

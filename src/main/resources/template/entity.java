@@ -1,9 +1,9 @@
 package ${config.entityPackage};
 
 
-import com.dazong.persistence.annotation.TableField;
-import com.dazong.persistence.annotation.TableId;
-import com.dazong.persistence.annotation.TableName;
+import cn.sjroom.www.persistence.annotation.TableField;
+import cn.sjroom.www.persistence.annotation.TableId;
+import cn.sjroom.www.persistence.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import java.io.Serializable;

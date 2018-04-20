@@ -3,7 +3,7 @@ package ${config.requestEntityPackage};
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.NotBlank;
-import com.dazong.common.req.PageRequest;
+import cn.sjroom.www.common.req.PageRequest;
 import java.util.Date;
 <% for(var item in dbTableFieldInfoList) {%>
 <% if(strutil.startWith(item.comment,"@status")) { %>

@@ -5,8 +5,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dazong.common.AbstractService;
-import com.dazong.common.YNStatus;
+import cn.sjroom.www.common.AbstractService;
+import cn.sjroom.www.common.YNStatus;
 import ${config.mapperPackage}.${upperModelName}Mapper;
 import ${config.requestEntityPackage}.${upperModelName}Request;
 import ${config.responseEntityPackage}.${upperModelName}Response;
