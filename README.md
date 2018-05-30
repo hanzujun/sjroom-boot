@@ -6,7 +6,7 @@ java 是专门针对web入口进行封装的基础组件，让使用者尽量少
 ```xml
 ├──sjroom
 │  	└─src/main/java
-│  		├─cn.sjroom.www
+│  		├─com.github.sjroom
 │  		    ├─common 		--基础组件
 │              ├─exception                
 │              ├─request                  
@@ -30,7 +30,7 @@ mvn install
 ### 在项目的pom.xml添加
 ```xml
  <parent>
-      <groupId>cn.sjroom.www</groupId>
+      <groupId>com.github.sjroom</groupId>
         <artifactId>sjroom-boot</artifactId>
         <version>1.0.0-SNAPSHOT</version>
  </parent>

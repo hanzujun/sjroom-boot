@@ -51,7 +51,7 @@
     
     <!--常规配置-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-          <property name="basePackage" value="cn.sjroom.www.persistence.mybatis.mapper"/>
+          <property name="basePackage" value="com.github.sjroom.persistence.mybatis.mapper"/>
           <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
  ```
@@ -63,7 +63,7 @@
 
 ## 定义实体类
 ```xml
-package cn.sjroom.www.persistence.mybatis.entity;
+package com.github.sjroom.persistence.mybatis.entity;
 
 @TableName("user")
 @Data
@@ -100,7 +100,7 @@ public class User implements Serializable {
 ```
 ## 定义mapper类
 ```xml
-package cn.sjroom.www.persistence.mybatis.mapper;
+package com.github.sjroom.persistence.mybatis.mapper;
 
 import BaseMapper;
 import User;
@@ -128,7 +128,7 @@ public interface UserMapper extends BaseMapper<User> {
        /**
        * 生成表的包名
        */
-       configGenerator.setBasePackage("cn.sjroom.www.yunying.mybatis");
+       configGenerator.setBasePackage("com.github.sjroom.yunying.mybatis");
     
        new AutoGenerator(configGenerator).run();
   ```
