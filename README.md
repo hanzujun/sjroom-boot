@@ -31,7 +31,7 @@ mvn install
 ```xml
  <parent>
       <groupId>com.github.sjroom</groupId>
-        <artifactId>sjroom-boot</artifactId>
+        <artifactId>sjroom-boot-pom</artifactId>
         <version>1.0.0-SNAPSHOT</version>
  </parent>
 ```
