@@ -12,11 +12,6 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <jdk.version>1.7</jdk.version>
-        <sjroom-boot.version>1.0.0-SNAPSHOT</sjroom-boot.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.github.sjroom</groupId>

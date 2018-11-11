@@ -14,6 +14,11 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <jdk.version>1.7</jdk.version>
+        <sjroom-boot.version>1.0.0-SNAPSHOT</sjroom-boot.version>
+    </properties>
+
     <modules>
         <module>sjroom-boot-common</module>
         <module>sjroom-boot-jdbc</module>
@@ -49,17 +54,17 @@
             <dependency>
                 <groupId>com.github.sjroom</groupId>
                 <artifactId>sjroom-boot-common</artifactId>
-                <version>${project.version}</version>
+                <version>${sjroom-boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.sjroom</groupId>
                 <artifactId>sjroom-boot-jdbc</artifactId>
-                <version>${project.version}</version>
+                <version>${sjroom-boot.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.sjroom</groupId>
                 <artifactId>sjroom-boot-web</artifactId>
-                <version>${project.version}</version>
+                <version>${sjroom-boot.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -70,8 +75,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
                     <encoding>UTF-8</encoding>
                     <!--<fork>true</fork>&lt;!&ndash; 如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart &ndash;&gt;-->
                 </configuration>
