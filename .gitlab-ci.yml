@@ -1,7 +1,14 @@
+variables:
+    base_docker_file: https://raw.githubusercontent.com/zw23534572/alpine-addons/master/git-lab-ci
+    image_server_remote: "registry.cn-hangzhou.aliyuncs.com"
+    project_name: sjroom-boot #你的项目名称
+    skipTest: "true" #如果maven需要跳过测试，请加此参数
+  
 stages:
     - build
 
-docker_build:
+maven_build:
     stage: build
     script:
-       - mvn install
+       - curl -O "$base_docker_file/mvn_build.sh" >> mvn_build.sh
+       - source mvn_build.sh
