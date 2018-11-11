@@ -1,0 +1,7 @@
+stages:
+    - build
+
+docker_build:
+    stage: build
+    script:
+       - mvn install
