@@ -73,17 +73,22 @@ public abstract class BaseApplicationException extends RuntimeException {
         return this.msg;
     }
 
+    public boolean isSuccess() {
+        return code % 1000 == CommonStatus.SUCCESS.getCode();
+    }
+
     /**
      * @return
      */
     public Map<String, Object> toMap() {
         Map<String, Object> map = new HashMap<>(2);
-        map.put("code", joinSystemStatusCode(this.code));
+        map.put("code", joinSystemStatusCode());
         map.put("msg", this.msg);
+        map.put("success", isSuccess());
         return map;
     }
 
-    public int joinSystemStatusCode(int code) {
+    public int joinSystemStatusCode() {
         String fullCodeStr = Integer.toString(ApplicationInfo.instance().getSystemCode());
         Integer fullCode = Integer.valueOf(this.code);
         if (!fullCodeStr.startsWith(String.valueOf(this.code))) {

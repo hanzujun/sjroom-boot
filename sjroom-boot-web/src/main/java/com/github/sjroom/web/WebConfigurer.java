@@ -28,7 +28,7 @@ public class WebConfigurer extends WebMvcConfigurerAdapter {
      */
     @Bean
     public JsonHttpMessageConverter jsonHttpMessageConverter() {
-        logger.info("MvcConfigurer JsonHttpMessageConverter started");
+        logger.info("MvcConfigurer JsonHttpMessageConverter spring inited");
         return new JsonHttpMessageConverter();
     }
 

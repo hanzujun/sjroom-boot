@@ -42,7 +42,7 @@ public class PageRequest {
     /**
      * 排序规则
      */
-    private String asc;
+    private String order;
     /**
      * 开始时间
      */
@@ -77,12 +77,12 @@ public class PageRequest {
         this.pageSize = pageSize;
     }
 
-    public PageRequest(int pageNo, int pageSize, String orderBy, String asc) {
+    public PageRequest(int pageNo, int pageSize, String orderBy, String order) {
         this.pageNo = pageNo;
         this.pageSize = pageSize;
         if (!StringUtils.isEmpty(orderBy)) {
             this.orderBy = SQLFilter.sqlInject(orderBy);
-            this.asc = SQLFilter.sqlInject(asc);
+            this.order = SQLFilter.sqlInject(order);
         }
     }
 

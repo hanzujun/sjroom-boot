@@ -26,6 +26,11 @@ public enum CommonStatus  {
     SERIALIZE_ERROR(102, "序列化异常"),
 
     /**
+     * token失效
+     */
+    TOKEN_ERROR(401, "token失效,请重新登录"),
+
+    /**
      * 成功
      */
     SUCCESS(200, "成功"),

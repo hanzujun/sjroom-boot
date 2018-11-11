@@ -49,6 +49,7 @@ public class CommonResponse implements IResult, Serializable {
         Map<String, Object> map = new HashMap<>(2);
         map.put("code", code);
         map.put("msg", msg);
+        map.put("success", isSuccess());
         return map;
     }
 

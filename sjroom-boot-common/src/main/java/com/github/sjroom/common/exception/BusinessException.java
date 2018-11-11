@@ -1,6 +1,7 @@
 package com.github.sjroom.common.exception;
 
 
+import com.github.sjroom.common.CommonStatus;
 import com.github.sjroom.common.IResult;
 
 /**
@@ -14,6 +15,10 @@ public class BusinessException extends BaseApplicationException {
 
     public BusinessException(String message) {
         super(message, null);
+    }
+
+    public BusinessException(CommonStatus commonStatus) {
+        super(commonStatus.getCode(),commonStatus.getMsg());
     }
 
     public BusinessException(String message, Object[] args) {
