@@ -24,7 +24,7 @@
         <module>sjroom-boot-jdbc</module>
         <module>sjroom-boot-web</module>
         <module>sjroom-boot-cache</module>
-        <!--<module>sjroom-boot-elasticjob</module>-->
+        <module>sjroom-boot-elasticjob</module>
         <module>sjroom-boot-pom</module>
     </modules>
 
