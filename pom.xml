@@ -23,6 +23,8 @@
         <module>sjroom-boot-common</module>
         <module>sjroom-boot-jdbc</module>
         <module>sjroom-boot-web</module>
+        <module>sjroom-boot-cache</module>
+        <!--<module>sjroom-boot-elasticjob</module>-->
         <module>sjroom-boot-pom</module>
     </modules>
 
@@ -42,6 +44,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--springboot程序测试依赖，如果是自动创建项目默认添加-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -59,6 +67,11 @@
             <dependency>
                 <groupId>com.github.sjroom</groupId>
                 <artifactId>sjroom-boot-jdbc</artifactId>
+                <version>${sjroom-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.sjroom</groupId>
+                <artifactId>sjroom-boot-web</artifactId>
                 <version>${sjroom-boot.version}</version>
             </dependency>
             <dependency>

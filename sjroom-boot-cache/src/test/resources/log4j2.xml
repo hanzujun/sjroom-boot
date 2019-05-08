@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+    <appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%p %d [%t] %c.%M():%L %fmeye - %m%n" />
+            <FMEyeFilter ignore="com.dazong.eye"/>
+        </Console>
+        <RollingFile name="FILE" fileName="/export/Logs/example.dazong.com/example-web.log" append="true"
+                                 filePattern="/export/Logs/example.dazong.com/example-web.log.%d{yyyy-MM-dd}">
+            <PatternLayout pattern="%p %d [%t] %c.%M():%L %fmeye - %m%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <FMEyeFilter ignore="com.dazong.eye"/>
+        </RollingFile >
+
+        <FMEyeAsync name="async_flume" useDisconf="true">
+            <PatternLayout charset="utf-8" pattern="%p %d [%t] %c.%M():%L %fmeye - %m%n" />
+        </FMEyeAsync>
+    </appenders>
+
+    <loggers>
+        <logger name="org.springframework" level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </logger>
+        <logger name="org.apache.http" level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </logger>
+        <logger name="org.apache.zookeeper" level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </logger>
+        <logger name="com.baidu.disconf" level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </logger>
+        <logger name="org.hibernate.validator" level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </logger>
+        <logger name="org.apache.activemq" level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </logger>
+        <logger name="org.apache.curator.framework" level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </logger>
+        <logger name="com.baomidou.mybatisplus" level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </logger>
+        <logger name="org.mybatis.spring.mapper" level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </logger>
+        <logger name="com.alibaba.dubbo" level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </logger>
+        <logger name="org.quartz.core" level="ERROR" additivity="false">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </logger>
+
+        <root level="DEBUG">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="async_flume" />
+        </root>
+    </loggers>
+</configuration>
