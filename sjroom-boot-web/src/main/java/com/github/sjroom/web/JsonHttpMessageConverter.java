@@ -2,9 +2,9 @@ package com.github.sjroom.web;
 
 import com.github.sjroom.common.IResult;
 import com.github.sjroom.common.response.DataResponse;
-import com.github.sjroom.common.util.JsonUtil;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.github.sjroom.common.utils.JsonUtil;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageNotWritableException;

@@ -1,6 +1,7 @@
 package com.github.sjroom.web;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,9 @@ import java.util.List;
 /**
  * Spring MVC 配置
  */
+@Slf4j
 public class WebConfigurer extends WebMvcConfigurerAdapter {
 
-    protected static Logger logger = LoggerFactory.getLogger(WebConfigurer.class);
 
     @Autowired
     JsonHttpMessageConverter jsonHttpMessageConverter;
@@ -28,7 +29,7 @@ public class WebConfigurer extends WebMvcConfigurerAdapter {
      */
     @Bean
     public JsonHttpMessageConverter jsonHttpMessageConverter() {
-        logger.info("MvcConfigurer JsonHttpMessageConverter spring inited");
+        log.info("MvcConfigurer JsonHttpMessageConverter spring inited");
         return new JsonHttpMessageConverter();
     }
 
@@ -39,7 +40,7 @@ public class WebConfigurer extends WebMvcConfigurerAdapter {
      */
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        logger.info("MvcConfigurer configureMessageConverters started");
+        log.info("MvcConfigurer configureMessageConverters started");
         converters.add(jsonHttpMessageConverter);
     }
 
@@ -49,7 +50,8 @@ public class WebConfigurer extends WebMvcConfigurerAdapter {
      */
     @Override
     public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
-        logger.info("MvcConfigurer configureHandlerExceptionResolvers started");
+        log.info("MvcConfigurer configureHandlerExceptionResolvers started");
+        log.debug("MvcConfigurer configureHandlerExceptionResolvers started2");
         exceptionResolvers.add(new JsonMappingExceptionResolver());
     }
 

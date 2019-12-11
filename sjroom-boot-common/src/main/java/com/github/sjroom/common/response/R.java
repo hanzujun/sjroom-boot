@@ -1,14 +1,20 @@
 package com.github.sjroom.common.response;
 
-import com.github.sjroom.common.CommonStatus;
-import com.github.sjroom.common.exception.ArgumetException;
+import com.github.sjroom.common.code.CommonsCode;
+import com.github.sjroom.common.code.IResultCode;
 import com.github.sjroom.common.exception.BusinessException;
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.regex.Pattern;
+import com.github.sjroom.common.exception.FrameworkException;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
+import org.springframework.util.CollectionUtils;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 返回数据
@@ -30,122 +36,112 @@ public class R extends HashMap<String, Object> {
         return this;
     }
 
-    public static void notNull(Object o) {
-        notNull(o, "null");
-    }
-
-    public static void notNull(Object o, String msg) {
-        if (o == null) {
-            throwArgumetException(msg);
-        }
-    }
-
-    public static void notBlank(String field, String fieldName) {
-        if (StringUtils.isEmpty(field)) {
-            throwArgumetException(fieldName);
-        }
-    }
-
-    public static void notEmpty(Object o) {
-        notEmpty(o, "filedName");
-    }
-
-    public static void notEmpty(Object o, String filedName) {
-        if (ObjectUtils.isEmpty(o)) {
-            throwArgumetException(filedName);
-        }
-    }
-
     /**
-     * 抛出参数异常
+     * 异常抛出
      *
-     * @param msg 消息
+     * @param rCode
      */
-    public static void throwArgumetException(String msg) {
-        Integer code = CommonStatus.ILLEGAL_PARAM.getCode();
-        String message = CommonStatus.ILLEGAL_PARAM.getMessage(msg);
-        throw new ArgumetException(code, message);
+    public static void throwFail(IResultCode rCode) throws BusinessException {
+        throw new BusinessException(rCode);
     }
 
     /**
-     * 抛出业务异常
+     * 断言api异常,可输入国际化参数
+     *
+     * @param expression
+     * @param resultCode
+     * @param i18Args
      */
-    public static void throwBusinessException(String msg) {
-        Integer code = CommonStatus.FAIL.getCode();
-        String message = CommonStatus.FAIL.getMessage(msg);
-        throw new BusinessException(code, message);
+    public static void throwOnFalse(boolean expression, IResultCode resultCode, Object... i18Args) throws BusinessException {
+        throwOnFalse(expression, resultCode, i18Args, null);
     }
 
-
-    //检查是否为手机号码
-    public final static String PHONE_PATTERN = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(17([0,1,6,7,]))|(18[0-2,5-9]))\\d{8}$";
-
-    public static boolean checkPhone(String result) {
-        return Pattern.compile(PHONE_PATTERN).matcher(result).matches();
+    /**
+     * 异常抛出
+     *
+     */
+    public static void throwFail(IResultCode rCode, Object... i18nArgs) throws BusinessException {
+        throw new BusinessException(rCode, i18nArgs);
     }
 
-    public static void required(Object o) {
-        if (ObjectUtils.isEmpty(o)) {
-            log.warn("required error:{}", o);
-            throw new ArgumetException(o.toString());
+    public static void required(Object... i18nArgs) throws BusinessException {
+        throw new BusinessException(CommonsCode.DATA_COMMON_ERROR_FAILED, i18nArgs);
+    }
+
+    public static void throwFail(Object... i18nArgs) throws BusinessException {
+        throw new BusinessException(CommonsCode.DATA_COMMON_ERROR_FAILED, i18nArgs);
+    }
+
+    /**
+     * 断言api异常，全量参数
+     *
+     * @param expression
+     * @param resultCode
+     * @param dataPairs  数据对，用于api输出，包含国际化
+     * @throws BusinessException
+     */
+    public static void throwOnFalse(boolean expression, IResultCode resultCode, Object[] i18Args, DataPair... dataPairs) throws BusinessException {
+        throwOnFalse0(expression, resultCode.getCode(), resultCode.getMsg(), i18Args, dataPairs);
+    }
+
+    public static void throwFail(IResultCode resultCode, Object[] i18Args, DataPair... dataPairs) throws BusinessException {
+        throwFail0(resultCode.getCode(), resultCode.getMsg(), i18Args, dataPairs);
+    }
+
+    /**
+     * 断言api异常,可输入国际化参数
+     *
+     * @param expression
+     * @param code
+     * @param message
+     * @param i18Args    国际化参数
+     * @throws BusinessException
+     */
+    public static void throwOnFalse(boolean expression, String code, String message, Object... i18Args) throws BusinessException {
+        throwOnFalse0(expression, code, message, i18Args, null);
+    }
+
+    public static void throwFail(String code, String message, Object... i18Args) {
+        throwFail0(code, message, i18Args, null);
+    }
+
+    /**
+     * 断言api异常,全量参数
+     *
+     * @param expression
+     * @param code
+     * @param message
+     * @throws BusinessException
+     */
+    public static void throwOnFalse0(boolean expression, String code, String message, Object[] i18Args, DataPair... dataPairs) throws BusinessException {
+        if (!expression) {
+            throwFail0(code, message, i18Args, dataPairs);
         }
     }
 
-    public static void required(Object o, String filedName) {
-        if (ObjectUtils.isEmpty(o)) {
-            String errMsg = filedName + "不能为空";
-            log.warn("required warn:{} ", errMsg);
-            throw new ArgumetException(errMsg);
+    public static void throwFail0(String code, String message, Object[] i18Args, DataPair... dataPairs) throws BusinessException {
+        BusinessException exception = new BusinessException(code, message);
+        exception.setI18nArgs(i18Args);
+        if (!CollectionUtils.isEmpty(Arrays.asList(dataPairs))) {
+            Map<String, Object> values = Stream.of(dataPairs)
+                    .filter(v -> v != null && org.apache.commons.lang3.ObjectUtils.allNotNull(v.field, v.data))
+                    .collect(Collectors.toMap(v -> v.field, v -> v.data));
+            exception.setValues(values);
+        }
+        throw exception;
+    }
+
+    public static void assertTrue(boolean expression, String message) {
+        if (!expression) {
+            throw new FrameworkException(message);
         }
     }
 
-    public static void pattern(String parameter, String pattern) {
-        if (!parameter.matches(pattern)) {
-            throw new BusinessException(parameter + "匹配错误");
-        }
-    }
-
-    public static void match(String parameter1, String parameter2) {
-        required(parameter1);
-        required(parameter2);
-        if (!parameter1.equals(parameter2)) {
-            throw new BusinessException(parameter2 + "匹配错误");
-        }
-    }
-
-    public static void text(String parameter) {
-        pattern(parameter, "^[_A-z0-9]{6,36}$");
-    }
-
-    public static void email(String parameter) {
-        pattern(parameter, "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$");
-    }
-
-    public static void url(String parameter) {
-        pattern(parameter, "((http|ftp|https)://)(([a-zA-Z0-9\\._-]+\\.[a-zA-Z]{2,6})|([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}))(:[0-9]{1,4})*(/[a-zA-Z0-9\\&%_\\./-~-]*)?");
-    }
-
-    public static void number(Integer number, Integer max, Integer min) {
-        if (number > max || number < min) {
-            throw new BusinessException(number + "最大与最小值错误");
-        }
-    }
-
-    static void number(Double number, Double max, Double min) {
-        if (number > max || number < min) {
-            throw new BusinessException(number + "最大与最小值错误");
-        }
-    }
-
-    public static void number(BigDecimal number, BigDecimal max, BigDecimal min) {
-        if (number.compareTo(max) > 0 || number.compareTo(min) < 0) {
-            throw new BusinessException(number + "最大与最小值错误");
-        }
-    }
-
-    public static void number(Float number, Float max, Float min) {
-        if (number > max || number < min) {
-            throw new BusinessException(number + "最大与最小值错误");
-        }
+    @Getter
+    @Setter
+    @Builder
+    public static class DataPair {
+        private String field; // 输出的key
+        private Object data; //输出的value
     }
 }

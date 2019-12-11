@@ -1,0 +1,11 @@
+{
+  "properties": [
+    {
+      "name": "mybatis-plus.sql-log.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否开启 mybatis-plus 的 sql 打印，默认：开启.",
+      "defaultValue": "true"
+    }
+  ]
+}
+

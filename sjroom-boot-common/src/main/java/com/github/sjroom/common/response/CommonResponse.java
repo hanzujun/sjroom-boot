@@ -2,7 +2,6 @@ package com.github.sjroom.common.response;
 
 import com.github.sjroom.common.CommonStatus;
 import com.github.sjroom.common.IResult;
-import com.github.sjroom.common.exception.BaseApplicationException;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -30,10 +29,6 @@ public class CommonResponse implements IResult, Serializable {
 
     public CommonResponse(IResult resultStatus) {
         this(resultStatus.getCode(), resultStatus.getMsg());
-    }
-
-    public CommonResponse(BaseApplicationException e) {
-        this(e.getCode(), e.getMsg());
     }
 
     public CommonResponse(int code, String message) {

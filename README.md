@@ -2,6 +2,24 @@
 java 是专门针对web入口进行封装的基础组件，让使用者尽量少配置就可以达到开箱即用。
 > Mybatis 增强工具包 - 只做增强不做改变，简化CRUD操作。采用了mybatis -plus 的核心思想构建。
 
+## 项目特性
+无侵入：Mybatis-Plus 在 Mybatis 的基础上进行扩展，只做增强不做改变，引入 Mybatis-Plus 不会对您现有的 Mybatis 构架产生任何影响，而且 MP 支持所有 Mybatis 原生的特性
+依赖少：仅仅依赖 Mybatis 以及 Mybatis-Spring
+损耗小：启动即会自动注入基本CURD，性能基本无损耗，直接面向对象操作
+通用CRUD操作：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求
+支持代码生成：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 层代码，支持模板引擎.
+
+## 项目配置
+### 配置一
+```xml
+ <parent>
+      <groupId>com.github.sjroom</groupId>
+        <artifactId>sjroom-boot-pom</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+ </parent>
+```
+
+
 # 项目结构
 ```xml
 ├──sjroom

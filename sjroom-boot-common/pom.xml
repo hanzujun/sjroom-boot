@@ -5,6 +5,29 @@
 
     <artifactId>sjroom-boot-common</artifactId>
 
+    <properties>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <parent>
         <groupId>com.github.sjroom</groupId>
         <artifactId>sjroom-boot</artifactId>

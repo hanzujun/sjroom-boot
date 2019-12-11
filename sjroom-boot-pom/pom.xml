@@ -20,11 +20,6 @@
         </dependency>
         <dependency>
             <groupId>com.github.sjroom</groupId>
-            <artifactId>sjroom-boot-jdbc</artifactId>
-            <version>${sjroom-boot.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.sjroom</groupId>
             <artifactId>sjroom-boot-web</artifactId>
             <version>${sjroom-boot.version}</version>
         </dependency>

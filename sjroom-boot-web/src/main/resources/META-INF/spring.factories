@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.github.sjroom.web.WebConfigurer,com.github.sjroom.common.ApplicationInfo
+com.github.sjroom.web.WebConfigurer,\
+  com.github.sjroom.web.boot.StartEventListener

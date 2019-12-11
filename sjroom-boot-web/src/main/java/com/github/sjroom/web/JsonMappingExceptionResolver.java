@@ -1,6 +1,5 @@
 package com.github.sjroom.web;
 
-import com.github.sjroom.common.exception.BaseApplicationException;
 import com.github.sjroom.common.CommonStatus;
 import com.github.sjroom.common.response.DataResponse;
 import org.slf4j.Logger;
@@ -27,15 +26,15 @@ public class JsonMappingExceptionResolver extends SimpleMappingExceptionResolver
 
 
         Map<String, Object> resultMap;
-        if (ex instanceof BaseApplicationException) {
-            resultMap = ((BaseApplicationException) ex).toMap();
-        } else {
-            DataResponse resp = new DataResponse(CommonStatus.ERROR.getCode(), ex.getMessage());
-            resultMap = resp.toMap();
-        }
+//        if (ex instanceof BaseApplicationException) {
+//            resultMap = ((BaseApplicationException) ex).toMap();
+//        } else {
+//            DataResponse resp = new DataResponse(CommonStatus.ERROR.getCode(), ex.getMessage());
+//            resultMap = resp.toMap();
+//        }
 
-        logger.info("请求异常！结果：{}", resultMap);
-        jsonmv.addAllObjects(resultMap);
+//        logger.info("请求异常！结果：{}", resultMap);
+//        jsonmv.addAllObjects(resultMap);
         return jsonmv;
     }
 }

@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.6.RELEASE</version>
+        <version>2.1.5.RELEASE</version>
     </parent>
 
     <groupId>com.github.sjroom</groupId>
@@ -15,17 +15,17 @@
     <packaging>pom</packaging>
 
     <properties>
-        <jdk.version>1.7</jdk.version>
+        <jdk.version>1.8</jdk.version>
         <sjroom-boot.version>1.0.0-SNAPSHOT</sjroom-boot.version>
     </properties>
 
     <modules>
         <module>sjroom-boot-common</module>
-        <module>sjroom-boot-jdbc</module>
+        <module>sjroom-boot-mybatis</module>
         <module>sjroom-boot-web</module>
-        <module>sjroom-boot-cache</module>
-        <module>sjroom-boot-elasticjob</module>
+        <!--<module>sjroom-boot-cache</module>-->
         <module>sjroom-boot-pom</module>
+        <module>sjroom-demo</module>
     </modules>
 
     <dependencies>
@@ -39,10 +39,14 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>
                 <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>*</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
         <!--springboot程序测试依赖，如果是自动创建项目默认添加-->
         <dependency>
@@ -71,7 +75,12 @@
             </dependency>
             <dependency>
                 <groupId>com.github.sjroom</groupId>
-                <artifactId>sjroom-boot-web</artifactId>
+                <artifactId>sjroom-boot-elasticjob</artifactId>
+                <version>${sjroom-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.sjroom</groupId>
+                <artifactId>sjroom-boot-cache</artifactId>
                 <version>${sjroom-boot.version}</version>
             </dependency>
             <dependency>
