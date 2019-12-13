@@ -1,60 +1,72 @@
-# 简介 | Intro
-java 是专门针对web入口进行封装的基础组件，让使用者尽量少配置就可以达到开箱即用。
-> Mybatis 增强工具包 - 只做增强不做改变，简化CRUD操作。采用了mybatis -plus 的核心思想构建。
+# 数据化运营平台-基础组件集
 
-## 项目特性
-无侵入：Mybatis-Plus 在 Mybatis 的基础上进行扩展，只做增强不做改变，引入 Mybatis-Plus 不会对您现有的 Mybatis 构架产生任何影响，而且 MP 支持所有 Mybatis 原生的特性
-依赖少：仅仅依赖 Mybatis 以及 Mybatis-Spring
-损耗小：启动即会自动注入基本CURD，性能基本无损耗，直接面向对象操作
-通用CRUD操作：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求
-支持代码生成：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 层代码，支持模板引擎.
+## 组件功能列表
 
-## 项目配置
-### 配置一
-```xml
- <parent>
-      <groupId>com.github.sjroom</groupId>
-        <artifactId>sjroom-boot-pom</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
- </parent>
-```
+| 组件名                   | 描述                                | 状态    |
+| ------------------------ | ----------------------------------- | ------- |
+| dop-framework-parent     | 父依赖，版本、插件等版本和依赖管理  | 完成    |
+| dop-framework-hystrix    | hystrix组件扩展                     | 完成    |
+| dop-framework-feign      | feign组件扩展                       | 完成    |
+| dop-framework-mybatis    | mybatis 代码生成和基础依赖          | 完成    |
+| dop-framework-lock       | 基于 redis 分布式锁                 | 完成    |
+| dop-framework-idgen      | 基于 redis id生成组件               | 完成    |
+| dop-framework-core       | 核心功能组件集，utils、基础组件接口 | 完成 |
+| dop-framework-autoconfig | boot 通用功能自动配置               | 完成 |
+| dop-framework-log        | 日志组件                            | 完成 |
+| dop-framework-cache      | cache组件扩展                       | 80%     |
+| dop-framework-datasource | 多数据源读写分离                    | 0%      |
+| dop-framework-http | http 远程调用工具包                    | 完成      |
+
+## TODO
+
+1. 完善服务上下文，目前可传递配置的上下文。
+
+2. 缓存组件的开发。
+
+3. 多数据源组件开发。
+
+## 公共请求头
+
+### 前端传递
+
+| Header            | 是否必须 | 简介               |
+| ----------------- | -------- | ------------------ |
+| x-client-language | 是       | 语言               |
+| x-auth-token      | 否       | 需要认证的接口传递 |
+| x-random-no       | 是       | 随机数             |
+| x-menu-button     | 否       | 按钮id             |
+| x-tenant-id       | 否       | 租户id             |
+
+### 网关生成
+
+| Header       | 是否必须 | 简介                                  |
+| ------------ | -------- | ------------------------------------- |
+| x-request-id | 是       | 请求id（agw20190425115730031）        |
+| x-client-ip  | 是       | 从 x-forwarded-for 获取浏览器ip，透传 |
+| x-client-ua  | 是       | 客户端 userAgent                      |
+| x-account-id | 否       | 网关认证完毕后的用户信息头            |
+| x-x-role-id | 否       | 网关认证完毕后的用户角色头            |
 
 
-# 项目结构
-```xml
-├──sjroom
-│  	└─src/main/java
-│  		├─com.github.sjroom
-│  		    ├─common 		--基础组件
-│              ├─exception                
-│              ├─request                  
-│              ├─response 
-│              └─web	
-│  		    ├─jdbc --Mybatis 增强工具包 - 只做增强不做改变，简化CRUD操作。采用了mybatis -plus 的核心思想构建
-│  		    ├─util --util工具类
-│  		    └─web  --专门针对web入口进行封装的基础组件，让使用者尽量少配置就可以达到开箱即用。
-```
+注意：网关需要清洗外部传递的头信息。
 
-### 第一步
-目前项目还未发布到中央仓库，所以需要用的话请下载代码maven install到本地仓库后在使用
-以后在自己的本项目中添加
-```bash
-git clone https://github.com/zw23534572/sjroom-boot.git
-```
-### 第二步
-```bash
-mvn install
-```
-### 在项目的pom.xml添加
-```xml
- <parent>
-      <groupId>com.github.sjroom</groupId>
-        <artifactId>sjroom-boot-pom</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
- </parent>
-```
+### 服务间透传请求头
 
-## 注意
-本项目是基于spring boot 项目的封装，无需在添加spring boot 的配置.
-1. sjroom-web的使用请查看,[README-WEB.md](https://github.com/zw23534572/sjroom-boot/blob/master/README-WEB.md)
-2. sjroom-jdbc的使用请查看,[README-JDBC.md](https://github.com/zw23534572/sjroom-boot/blob/master/README-JDBC.md)
+| Header            | 是否必须 | 简介                            |
+| ----------------- | -------- | ------------------------------- |
+| x-client-language | 是       | 语言                            |
+| x-client-ua       | 是       | 客户端 userAgent                |
+| x-client-ip       | 否       | 从 x-forwarded-for 获取浏览器ip |
+| x-request-id      | 否       | 请求id                          |
+| x-menu-button     | 否       | 按钮id                          |
+| x-tenant-id       | 否       | 租户id                          |
+| x-account-id      | 否       | 网关认证完毕后的用户信息头。    |
+| x-x-role-id | 否       | 网关认证完毕后的用户角色头            |
+
+## 公共响应头
+
+| Header       | 是否必须 | 简介     |
+| ------------ | -------- | -------- |
+| x-random-no  | 是       | 原样返回 |
+| x-request-id | 是       | 请求id   |
+

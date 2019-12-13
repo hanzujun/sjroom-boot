@@ -1,125 +1,417 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <groupId>com.sunvalley</groupId>
+    <artifactId>dop-framework</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>dop-framework</name>
+    <description>新数字化运营平台微服务父项目</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.github.sjroom</groupId>
-    <artifactId>sjroom-boot</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-
     <properties>
-        <jdk.version>1.8</jdk.version>
-        <sjroom-boot.version>1.0.0-SNAPSHOT</sjroom-boot.version>
+        <!--  统一编译版本  -->
+        <java.version>1.8</java.version>
+        <dop.framework.version>0.0.1-SNAPSHOT</dop.framework.version>
+        <spring.boot.version>2.1.5.RELEASE</spring.boot.version>
+        <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
+        <spring.boot.admin.version>2.1.5</spring.boot.admin.version>
+        <spring.cloud.alibaba.version>0.9.0.RELEASE</spring.cloud.alibaba.version>
+        <jasypt.version>2.1.1</jasypt.version>
+        <okhttp.version>3.14.1</okhttp.version>
+        <findbugs.version>3.0.2</findbugs.version>
+        <swagger.version>2.9.2</swagger.version>
+        <swagger.bootstrap.ui>1.9.3</swagger.bootstrap.ui>
+        <disruptor.version>3.4.2</disruptor.version>
+        <mybatis.plus.version>3.2.0</mybatis.plus.version>
+        <beetl.version>2.7.3</beetl.version>
+        <redisson.version>3.10.7</redisson.version>
+        <caffeine.version>2.7.0</caffeine.version>
+        <rocketmq.starter.version>2.0.2</rocketmq.starter.version>
+        <openfeign.version>10.1.0</openfeign.version>
     </properties>
 
     <modules>
-        <module>sjroom-boot-common</module>
-        <module>sjroom-boot-mybatis</module>
-        <module>sjroom-boot-web</module>
-        <!--<module>sjroom-boot-cache</module>-->
-        <module>sjroom-boot-pom</module>
-        <module>sjroom-demo</module>
+        <module>dop-framework-base</module>
+        <module>dop-framework-parent</module>
+        <module>dop-framework-core</module>
+        <module>dop-framework-cache</module>
+        <module>dop-framework-mybatis</module>
+        <module>dop-framework-lock</module>
+        <module>dop-framework-swagger</module>
     </modules>
 
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.20</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <artifactId>spring-boot-autoconfigure-processor</artifactId>
         </dependency>
-        <!--springboot程序测试依赖，如果是自动创建项目默认添加-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>${findbugs.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+        </dependency>
+        <!-- test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.36</version>
-        </dependency>
     </dependencies>
+
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.github.sjroom</groupId>
-                <artifactId>sjroom-boot-common</artifactId>
-                <version>${sjroom-boot.version}</version>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-core</artifactId>
+                <version>${dop.framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.sjroom</groupId>
-                <artifactId>sjroom-boot-jdbc</artifactId>
-                <version>${sjroom-boot.version}</version>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.6</version>
+            </dependency>
+            <!--  影响范围  web ,hystrix,ribbon 需谨慎 -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>20.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-feignclient</artifactId>
+                <version>${dop.framework.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.sjroom</groupId>
-                <artifactId>sjroom-boot-elasticjob</artifactId>
-                <version>${sjroom-boot.version}</version>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-jackson</artifactId>
+                <version>${openfeign.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.sjroom</groupId>
-                <artifactId>sjroom-boot-cache</artifactId>
-                <version>${sjroom-boot.version}</version>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-core</artifactId>
+                <version>${openfeign.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.sjroom</groupId>
-                <artifactId>sjroom-boot-web</artifactId>
-                <version>${sjroom-boot.version}</version>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-okhttp</artifactId>
+                <version>${openfeign.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-cache</artifactId>
+                <version>${dop.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-base</artifactId>
+                <version>${dop.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-mybatis</artifactId>
+                <version>${dop.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-lock</artifactId>
+                <version>${dop.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-idgen</artifactId>
+                <version>${dop.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-swagger</artifactId>
+                <version>${dop.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.5.20</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-http</artifactId>
+                <version>${dop.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-gateway-mvc</artifactId>
+                <version>${dop.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-excel</artifactId>
+                <version>${dop.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sunvalley</groupId>
+                <artifactId>dop-framework-parent</artifactId>
+                <version>${dop.framework.version}</version>
+                <!--                <type>pom</type>-->
+                <!--                <scope>import</scope>-->
+                <!--                <scope>compile</scope>-->
+            </dependency>
+            <!-- redisson -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+            <!-- 密码等敏感信息加密 -->
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot-starter</artifactId>
+                <version>${jasypt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>logging-interceptor</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+            <!-- 用于 log4j2 异步日志 -->
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
+            </dependency>
+            <!-- web api -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-bean-validators</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>${swagger.bootstrap.ui}</version>
+            </dependency>
+            <!-- mybatis-plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-typehandlers-jsr310</artifactId>
+                <version>1.0.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ibeetl</groupId>
+                <artifactId>beetl</artifactId>
+                <version>${beetl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 强制排查依赖 tomcat -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-tomcat</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- 强制排查依赖 logging -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring.boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                        <groupId>org.springframework.boot</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- 强制排查依赖 lettuce -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${spring.boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.lettuce</groupId>
+                        <artifactId>lettuce-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>${spring.boot.admin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
+
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
-                    <encoding>UTF-8</encoding>
-                    <!--<fork>true</fork>&lt;!&ndash; 如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart &ndash;&gt;-->
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <!-- ignore junit test -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <skip>true</skip>
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <!-- 定义环境 -->
+    <!-- mvn clean package -Ptest1 -->
+    <!-- 编译的时使用 -P 指定对应的环境 -->
+    <profiles>
+        <profile>
+            <id>dev1</id>
+            <properties>
+                <activatedProfile>dev1</activatedProfile>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>dev2</id>
+            <properties>
+                <activatedProfile>dev2</activatedProfile>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <activatedProfile>test</activatedProfile>
+            </properties>
+        </profile>
+        <profile>
+            <id>ptest</id>
+            <properties>
+                <activatedProfile>ptest</activatedProfile>
+            </properties>
+        </profile>
+        <profile>
+            <id>pro</id>
+            <properties>
+                <activatedProfile>pro</activatedProfile>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <!--  配置构建新数字化运营平台项目时的仓库地址  2-->
+            <!--  snapshot版本不需要授权，开发人员可以根据情况自由构建  -->
+            <!--  release版本需要授权，应由版本管理人员进行构建，因此版本管理人员应在自己本地配置远程仓库的认证  -->
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>dop-snapshots</id>
+                    <url>${dop-snapshots-repo}</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+    </profiles>
 </project>

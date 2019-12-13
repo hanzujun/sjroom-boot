@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.github.sjroom.autoconfig.RedisAutoConfigure,\
-  com.github.sjroom.autoconfig.MemcacheAutoConfigure,com.github.sjroom.autoconfig.LocalCacheAutoConfigure

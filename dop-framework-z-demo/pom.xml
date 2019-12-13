@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.sunvalley</groupId>
+        <artifactId>dop-framework-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>dop-framework-z-demo</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.sunvalley</groupId>
+            <artifactId>dop-framework-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sunvalley</groupId>
+            <artifactId>dop-framework-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sunvalley</groupId>
+            <artifactId>dop-framework-mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sunvalley</groupId>
+            <artifactId>dop-framework-feignclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sunvalley</groupId>
+            <artifactId>dop-framework-idgen</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sunvalley</groupId>
+            <artifactId>dop-framework-swagger</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sunvalley</groupId>
+            <artifactId>dop-framework-cache</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- 设置打包生成的 jar 名称为父工程 -->
+        <!--        <finalName>${parent.artifactId}</finalName>-->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
