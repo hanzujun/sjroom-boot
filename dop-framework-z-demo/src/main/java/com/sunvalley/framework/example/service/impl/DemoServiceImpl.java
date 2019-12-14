@@ -1,6 +1,6 @@
-package com.sunvalley.framework.demo.service.impl;
+package com.sunvalley.framework.example.service.impl;
 
-import com.sunvalley.framework.demo.service.DemoService;
+import com.sunvalley.framework.example.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

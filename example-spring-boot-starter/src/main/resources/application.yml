@@ -1,0 +1,9 @@
+dop:
+  server:
+    short-name: bse
+  okhttp:
+    level: body
+
+client.dop.base.center.group:
+  dop-base-center
+

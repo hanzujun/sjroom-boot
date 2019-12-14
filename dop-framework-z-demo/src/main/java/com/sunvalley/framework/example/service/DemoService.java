@@ -1,4 +1,4 @@
-package com.sunvalley.framework.demo.service;
+package com.sunvalley.framework.example.service;
 
 public interface DemoService {
 	void echo();
