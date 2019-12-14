@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.sunvalley.framework.cache.autoconfig.RedisCacheAutoConfigure,\
+  com.sunvalley.framework.cache.autoconfig.DopCachingConfigurer,\
+  com.sunvalley.framework.cache.autoconfig.CaffeineCacheAutoConfigure,\
+  com.sunvalley.framework.cache.client.RedisOpsClient,\
+  com.sunvalley.framework.cache.autoconfig.RedisTemplateAutoConfigure

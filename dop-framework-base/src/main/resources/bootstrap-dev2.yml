@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    consul:
+      config:
+        data-key: data
+        defaultContext: application
+        enabled: true
+        format: yaml
+        prefix: config
+        profileSeparator: ','
+        watch:
+          enabled: false
+      host: 10.30.0.55
+      port: 8500

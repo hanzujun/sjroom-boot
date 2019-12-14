@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>toWord</title>
+    <style type="text/css">
+        .center {
+            margin: 0 auto;
+            width: 300px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="center">
+    <h2>Swagger2word!</h2>
+    <form action="/swagger/word" method="get">
+        <p>作者名：</p>
+        <input name="author"/>
+        <p>相应时间：</p>
+        <input name="responseTime" value="100ms"/>
+        <p>服务名：</p>
+        <select name="serverName">
+            <% for(var service in services) {%>
+            <option value="${service}">${service}</option>
+            <% } %>
+        </select>
+        <p></p>
+        <input type="submit" value="确认">
+    </form>
+</div>
+</body>
+</html>

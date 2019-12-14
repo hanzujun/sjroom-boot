@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="warn" packages="com.sunvalley.framework.base.logger.filter">
+    <Properties>
+        <Property name="appName">${sys:spring.application.name}</Property>
+        <Property name="logPath">${env:LOGGING_PATH:-logs}/${appName}</Property>
+        <Property name="PID">????</Property>
+        <Property name="LOG_LEVEL_PATTERN">%5p</Property>
+        <Property name="LOG_EXCEPTION_CONVERSION_WORD">%xwEx</Property>
+        <Property name="LOG_DATE_FORMAT_PATTERN">yyyy-MM-dd HH:mm:ss.SSS</Property>
+        <Property name="CONSOLE_LOG_PATTERN">%clr{%d{${LOG_DATE_FORMAT_PATTERN}}}{faint} %clr{${LOG_LEVEL_PATTERN}} %clr{${sys:PID}}{magenta} %clr{%X{xReqId}}{cyan} %clr{[%traceId]} %clr{-&#45;&#45;}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c:%L{1.}}{cyan} %clr{:}{faint} %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+    </Properties>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <Filters>
+                <ConsoleLevelFilter onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}"/>
+        </Console>
+        <RollingRandomAccessFile name="allFile" fileName="${logPath}/all.log"
+                                 filePattern="${logPath}/all.log.%d{yyyy-MM-dd}" immediateFlush="false">
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <PatternLayout
+                pattern="[%d] [%thread] ${LOG_LEVEL_PATTERN} ${sys:PID} %X{xReqId} [%traceId] %c %m (%F:%L)%n"/>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="errorFile" fileName="${logPath}/error.log"
+                                 filePattern="${logPath}/error.log.%d{yyyy-MM-dd}" immediateFlush="false">
+            <Filters>
+                <!--只允许级别为error的日志通过-->
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <PatternLayout
+                pattern="[%d] [%thread] ${LOG_LEVEL_PATTERN} ${sys:PID} %X{xReqId} [%traceId] %c %m (%F:%L)%n"/>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingRandomAccessFile>
+
+        <!-- 默认输出目标-->
+        <Rewrite name="rewriteAllFile">
+            <AppenderRef ref="allFile"/>
+            <AppenderRef ref="errorFile"/>
+        </Rewrite>
+
+        <!-- elk 输出目标-->
+        <RollingRandomAccessFile name="elkFile" fileName="${logPath}/elk.log"
+                                 filePattern="${logPath}/elk.log.%d{yyyy-MM-dd}" immediateFlush="false">
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+            <JsonLayout compact="true" eventEol="true" properties="true" locationInfo="true">
+                <KeyValuePair key="appName" value="${appName}"/>
+                <KeyValuePair key="appTimestamp" value="$${date:yyyy-MM-dd'T'HH:mm:ss.SSSZ}"/>
+            </JsonLayout>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- 减少部分debug日志 -->
+        <Logger name="org.springframework.context" level="WARN"/>
+        <Logger name="org.springframework.beans" level="WARN"/>
+        <Logger name="springfox.bean.validators" level="ERROR"/>
+        <Logger name="org.springframework.web" level="WARN"/>
+        <Logger name="org.springframework" level="INFO"/>
+
+
+        <!-- 基础组件 -->
+        <Logger name="org.apache" level="INFO"/>
+        <Logger name="io.lettuce" level="INFO"/>
+        <Logger name="io.netty" level="INFO"/>
+
+
+        <!-- 业务日志 -->
+        <Logger name="com.sunvalley" level="info"/>
+        <!-- feign 日志 -->
+        <Logger name="com.sunvalley.framework.base.http" level="info"/>
+        <!-- 接口请求日志 -->
+        <Logger name="com.sunvalley.framework.log.access" level="info"/>
+
+        <!--  全局异常输出级别  -->
+        <Logger name="mvc.api" level="info"/>
+        <Logger name="mvc.rmi" level="info"/>
+
+        <!-- 网关 AccessLog -->
+        <Logger name="reactor.netty.http.server.AccessLog" level="info"/>
+
+        <AsyncRoot level="${sys:LOG_ROOT_LEVEL}" includeLocation="true" additivity="false">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="${sys:LOG_APPEND_VALUE}"/>
+        </AsyncRoot>
+    </Loggers>
+</configuration>
