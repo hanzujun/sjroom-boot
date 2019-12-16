@@ -1,4 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.sunvalley.framework.example.web.SwaggerServletAutoConfiguration,\
-  com.sunvalley.framework.example.web.BeetlConfiguration,\
-  com.sunvalley.framework.example.web.SwaggerConfiguration
+  com.sunvalley.framework.swagger.web.SwaggerServletAutoConfiguration,\
+  com.sunvalley.framework.swagger.web.BeetlConfiguration,\
+  com.sunvalley.framework.swagger.web.SwaggerConfiguration

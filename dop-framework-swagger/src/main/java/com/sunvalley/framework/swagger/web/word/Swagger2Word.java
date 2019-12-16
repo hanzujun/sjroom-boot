@@ -1,4 +1,4 @@
-package com.sunvalley.framework.demo.web.word;
+package com.sunvalley.framework.swagger.web.word;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

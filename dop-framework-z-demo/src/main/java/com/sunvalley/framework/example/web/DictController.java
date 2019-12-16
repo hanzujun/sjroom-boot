@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping("/api/base/dict")
 @Api("数据字典表 控制器")
 public class DictController {
 

@@ -1,17 +1,17 @@
-package com.sunvalley.framework.demo.web.word;
+package com.sunvalley.framework.swagger.web.word;
 
 import lombok.Builder;
 import lombok.Data;
 
 /**
- * Response
+ * Request
  *
  * @author XiuYin.Cui
  * @date 2018/1/11
  */
 @Builder
 @Data
-public class Response {
+public class Request {
 
 	/**
 	 * 参数

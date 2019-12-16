@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sunvalley</groupId>
-    <artifactId>dop-framework</artifactId>
+    <artifactId>dop-framework-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>dop-framework</name>
@@ -41,12 +41,13 @@
 
     <modules>
         <module>dop-framework-base</module>
-        <module>dop-framework-parent</module>
+        <module>dop-framework-z-demo</module>
         <module>dop-framework-core</module>
         <module>dop-framework-cache</module>
         <module>dop-framework-mybatis</module>
         <module>dop-framework-lock</module>
         <module>dop-framework-swagger</module>
+        <module>example-spring-boot-starter</module>
     </modules>
 
     <dependencies>
