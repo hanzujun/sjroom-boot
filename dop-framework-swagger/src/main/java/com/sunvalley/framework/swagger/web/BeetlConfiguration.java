@@ -1,6 +1,6 @@
-package com.sunvalley.framework.demo.web;
+package com.sunvalley.framework.swagger.web;
 
-import com.sunvalley.framework.demo.web.word.Swagger2WordService;
+import com.sunvalley.framework.swagger.web.word.Swagger2WordService;
 import org.beetl.core.GroupTemplate;
 import org.beetl.core.resource.ClasspathResourceLoader;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

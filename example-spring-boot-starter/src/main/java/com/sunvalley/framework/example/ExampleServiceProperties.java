@@ -8,5 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class ExampleServiceProperties {
 	private String prefix;
 	private String suffix;
-	private String test2;
+
+	private Boolean enabled = false;
+
 }
