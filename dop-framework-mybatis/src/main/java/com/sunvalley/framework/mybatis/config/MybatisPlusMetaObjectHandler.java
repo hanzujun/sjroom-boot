@@ -21,18 +21,6 @@ public class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
 		log.info("mybatis plus start insert fill ....");
 		fillBIdByAnnotation(metaObject);
 
-		Object tenantId = metaObjectDataSources.getXTenantId();
-		this.fillValIfNullByName("tenantId", tenantId, metaObject);
-
-		Object companyId = metaObjectDataSources.getXCompanyId();
-		this.fillValIfNullByName("companyId", companyId, metaObject);
-
-		Object systemId = metaObjectDataSources.getXSystemId();
-		this.fillValIfNullByName("systemId", systemId, metaObject);
-
-		Object owner = metaObjectDataSources.getOwner();
-		this.fillValIfNullByName("ownRoleId", owner, metaObject);
-
 		Object operator = metaObjectDataSources.getOperator();
 		this.fillValIfNullByName("createdBy", operator, metaObject);
 		this.fillValIfNullByName("updatedBy", operator, metaObject);

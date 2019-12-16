@@ -13,28 +13,18 @@
     <dependencies>
         <dependency>
             <groupId>com.sunvalley</groupId>
-            <artifactId>dop-framework-cache</artifactId>
+            <artifactId>dop-framework-base</artifactId>
         </dependency>
         <dependency>
             <groupId>com.sunvalley</groupId>
-            <artifactId>dop-framework-base</artifactId>
+            <artifactId>dop-framework-core</artifactId>
         </dependency>
         <dependency>
             <groupId>com.sunvalley</groupId>
             <artifactId>dop-framework-mybatis</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.sunvalley</groupId>
-            <artifactId>dop-framework-feignclient</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.sunvalley</groupId>
-            <artifactId>dop-framework-idgen</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.sunvalley</groupId>
-            <artifactId>dop-framework-cache</artifactId>
-        </dependency>
+
+
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>example-spring-boot-starter</artifactId>

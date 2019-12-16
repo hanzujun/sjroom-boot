@@ -48,13 +48,13 @@ public class GenerateCode {
 
         //  ---  需要更改的值
         // 包名
-        configGenerator.setBasePackage("com.sunvalley.hrm");
+        configGenerator.setBasePackage("com.sunvalley.framework.example");
         // 需要生成的表,多个为 "sys_msg_info,sys_msg_info12,sys_msg_info33"
-        configGenerator.setGenerateTableName("oc_hrm_employee,oc_hrm_employee_sms_rel,oc_hrm_sms");
+        configGenerator.setGenerateTableName("plat_account");
         // 生成代码的系统的系统,如果是platform. entity继承的实体为PlatformEntity,  如果是platform. entity继承的实体为SystemEntity,
         configGenerator.setSystemEnum(SystemEnum.BASE);
         // 替换表名前缀
-        configGenerator.setPrefixTableName("oc_hrm_");
+        configGenerator.setPrefixTableName("plat_");
         new AutoGenerator(configGenerator).run();
     }
 
