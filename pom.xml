@@ -43,10 +43,7 @@
         <module>dop-framework-base</module>
         <module>dop-framework-z-demo</module>
         <module>dop-framework-core</module>
-        <module>dop-framework-cache</module>
         <module>dop-framework-mybatis</module>
-        <module>dop-framework-lock</module>
-        <module>dop-framework-swagger</module>
         <module>example-spring-boot-starter</module>
     </modules>
 

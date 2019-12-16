@@ -1,4 +1,4 @@
-package com.sunvalley.framework.swagger.web;
+package com.sunvalley.framework.core.swagger;
 
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;

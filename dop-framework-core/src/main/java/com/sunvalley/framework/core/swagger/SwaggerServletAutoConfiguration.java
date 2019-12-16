@@ -1,4 +1,4 @@
-package com.sunvalley.framework.swagger.web;
+package com.sunvalley.framework.core.swagger;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

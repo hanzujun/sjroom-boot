@@ -33,10 +33,6 @@
         </dependency>
         <dependency>
             <groupId>com.sunvalley</groupId>
-            <artifactId>dop-framework-swagger</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.sunvalley</groupId>
             <artifactId>dop-framework-cache</artifactId>
         </dependency>
         <dependency>
