@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @Author: Simms.shi
+ * @Author: manson.zhou
  * @Date: 2019/7/10 9:36
  * @Desc: (业务代码)逻辑验证/断言工具类
  */

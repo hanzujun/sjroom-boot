@@ -16,7 +16,7 @@ import javax.validation.Validator;
 /**
  * 服务上下文配置
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Configuration
 @ConditionalOnClass(ObjectMapper.class)

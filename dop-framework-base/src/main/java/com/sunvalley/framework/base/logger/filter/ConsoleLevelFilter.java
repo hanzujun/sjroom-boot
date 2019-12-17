@@ -15,7 +15,7 @@ import org.apache.logging.log4j.message.Message;
 import org.apache.logging.log4j.util.PerformanceSensitive;
 
 /**
- * @Author: Simms.shi
+ * @Author: manson.zhou
  * @Date: 2019/11/6 8:53
  * @Desc: level 可变的过滤器
  * @see ThresholdFilter
@@ -131,19 +131,12 @@ public class ConsoleLevelFilter extends AbstractFilter {
 		return filter(level);
 	}
 
-	public Level getLevel() {
-		return level;
-	}
-
-	@Override
-	public String toString() {
-		return level.toString();
-	}
 
 	/**
 	 * Creates a ThresholdFilter.
+	 * <p>
+	 * //	 * @param level    The logger Level.
 	 *
-//	 * @param level    The log Level.
 	 * @param match    The action to take on a match.
 	 * @param mismatch The action to take on a mismatch.
 	 * @return The created ThresholdFilter.

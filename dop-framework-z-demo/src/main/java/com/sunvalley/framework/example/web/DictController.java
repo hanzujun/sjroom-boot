@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RestController
 @Api("数据字典表 控制器")
+@RequestMapping("api/dict")
 public class DictController {
 
 	@Autowired

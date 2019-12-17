@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.joining;
 /**
  * 根据 ID 批量更新有值字段
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Slf4j
 public class UpdateBatchByBizIds extends AbstractBizIdMethod {

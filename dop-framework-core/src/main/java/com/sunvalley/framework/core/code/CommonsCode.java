@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * 业务通用的 code
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Getter
 @AllArgsConstructor

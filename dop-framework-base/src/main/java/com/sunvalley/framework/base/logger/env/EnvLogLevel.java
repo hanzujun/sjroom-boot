@@ -1,7 +1,5 @@
 package com.sunvalley.framework.base.logger.env;
 
-import com.sunvalley.framework.base.logger.util.LoggerConstants;
-import com.sunvalley.framework.core.context.LogConstants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
@@ -10,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * 环境对用的日志级别
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Getter
 @RequiredArgsConstructor
@@ -23,7 +21,7 @@ public enum EnvLogLevel {
 	dev2("INFO", "WARN"),
 	test("INFO", "WARN"),
 	ptest("INFO", "OFF"),
-	pro("INFO", "OFF", LoggerConstants.LOG_ELK_KEY);
+	pro("INFO", "OFF");
 
 	/**
 	 * root 日志级别
@@ -37,7 +35,7 @@ public enum EnvLogLevel {
 	private String console;
 
 
-	private String appender = "all"; // elk
+	private String appender = "all"; // all
 
 	/**
 	 * 环境与日志级别关联

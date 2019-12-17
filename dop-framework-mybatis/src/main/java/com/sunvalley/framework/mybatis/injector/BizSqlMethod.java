@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * 业务主键方法
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Getter
 @AllArgsConstructor

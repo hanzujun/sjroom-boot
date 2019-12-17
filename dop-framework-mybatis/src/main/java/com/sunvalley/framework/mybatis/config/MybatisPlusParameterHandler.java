@@ -23,7 +23,7 @@ import java.util.*;
 /**
  * 增强 mybatis-plus 的自动填充功能
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 public class MybatisPlusParameterHandler extends DefaultParameterHandler {
 

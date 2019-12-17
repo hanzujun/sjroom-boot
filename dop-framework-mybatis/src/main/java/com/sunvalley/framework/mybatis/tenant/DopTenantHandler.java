@@ -13,7 +13,7 @@ import net.sf.jsqlparser.expression.LongValue;
  *     docs: https://mybatis.plus/guide/tenant.html
  * </p>
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @RequiredArgsConstructor
 public class DopTenantHandler implements TenantHandler {

@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /**
  * 表业务主键标识
  *
- * @author dream.lu
+ * @author manson.zhou
  * @since 2019-06-03
  */
 @Documented

@@ -2,6 +2,7 @@ package com.sunvalley.framework.base.logger;
 
 import com.sunvalley.framework.base.boot.DopStartEventListener;
 import com.sunvalley.framework.base.logger.env.EnvLogLevel;
+import com.sunvalley.framework.base.logger.filter.ConsoleLevelFilter;
 import com.sunvalley.framework.base.logger.util.ConsolePredicate;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.Level;
@@ -37,9 +38,7 @@ public class LoggerPostProcessor {
 		// 日志级别规则
 		EnvLogLevel envLogLevel = EnvLogLevel.of(activeProfile);
 		Level finalLevel = ConsolePredicate.getFinalLevel(environment, envLogLevel);
-		if (finalLevel != null) {
-			System.out.println("LoggerPostProcessor.ConsoleLevelFilter.setFinalLevel----->" + finalLevel);
-//			ConsoleLevelFilter.setLevel(finalLevel);
-		}
+		System.out.println("LoggerPostProcessor.ConsoleLevelFilter.setFinalLevel----->" + finalLevel);
+		ConsoleLevelFilter.setLevel(finalLevel);
 	}
 }

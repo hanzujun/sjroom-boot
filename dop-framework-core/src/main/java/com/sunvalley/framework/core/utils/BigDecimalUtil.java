@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 /**
  * 数字处理类，解决丢失精度问题
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @UtilityClass
 public class BigDecimalUtil {

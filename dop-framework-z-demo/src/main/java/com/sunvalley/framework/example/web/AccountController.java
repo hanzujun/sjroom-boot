@@ -1,5 +1,6 @@
-package com.sunvalley.framework.example.controller;
+package com.sunvalley.framework.example.web;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sunvalley.framework.core.utils.BeanUtil;
 import com.sunvalley.framework.example.bean.entity.Account;
@@ -44,8 +45,12 @@ public class AccountController {
 
 	@ApiOperation("查看分页")
 	@PostMapping("list")
-	public List<Account> page(@RequestBody AccountPageReqVo reqVo) {
-		return accountService.list();
+	public List<Account> page(@RequestBody AccountPageReqVo reqVo)
+	{
+		LambdaQueryWrapper<Account> wrapper = new LambdaQueryWrapper<Account>()
+			.eq(Account::getId,33l);
+
+		return accountService.list(wrapper);
 	}
 
 	@ApiOperation("创建")

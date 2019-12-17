@@ -21,7 +21,7 @@ import java.util.*;
 /**
  * 自定义的 Mapper
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 public interface IMapper<T> extends BaseMapper<T> {
 

@@ -17,7 +17,7 @@ import java.time.LocalDate;
  * mysql date
  * </p>
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 public class DopLocalDateTypeHandler extends LocalDateTypeHandler {
 

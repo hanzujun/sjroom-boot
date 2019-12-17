@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 顶级 Service
  *
- * @author dream.lu
+ * @author manson.zhou
  * @since 2019-06-03
  */
 public interface BaseService<T> extends IService<T> {

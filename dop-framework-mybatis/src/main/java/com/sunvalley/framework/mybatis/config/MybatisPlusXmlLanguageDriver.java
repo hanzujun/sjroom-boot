@@ -8,7 +8,7 @@ import org.apache.ibatis.scripting.xmltags.XMLLanguageDriver;
 /**
  * 修改自 mybatis-plus 继承 {@link XMLLanguageDriver} 重装构造函数, 使用自己的 MybatisDefaultParameterHandler
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 public class MybatisPlusXmlLanguageDriver extends XMLLanguageDriver {
 

@@ -5,7 +5,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotationAttributes;
 
 /**
- * @Author: Simms.shi
+ * @Author: manson.zhou
  * @Date: 2019/6/26 17:29
  * @Desc:
  *

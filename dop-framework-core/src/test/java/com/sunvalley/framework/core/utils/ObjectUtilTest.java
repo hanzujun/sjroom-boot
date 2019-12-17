@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * ObjectUtil Tester.
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 public class ObjectUtilTest {
 

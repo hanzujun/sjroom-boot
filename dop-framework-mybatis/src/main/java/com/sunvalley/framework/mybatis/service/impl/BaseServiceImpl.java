@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * BaseService 实现类（ 泛型：M 是 mapper 对象，T 是实体 ， PK 是主键泛型 ）
  *
- * @author dream.lu
+ * @author manson.zhou
  * @since 2019-06-03
  */
 public class BaseServiceImpl<M extends IMapper<T>, T> extends ServiceImpl<M, T> implements BaseService<T> {

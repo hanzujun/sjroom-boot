@@ -23,7 +23,7 @@ import static java.util.stream.Collectors.joining;
 /**
  * 插入一条数据（选择字段插入）
  *
- * @author dream.lu
+ * @author manson.zhou
  * @since 2019-06-03
  */
 public class InsertBizId extends Insert {

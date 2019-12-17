@@ -10,7 +10,7 @@ import java.util.Map;
 import static com.sunvalley.framework.core.exception.BusinessException.StateCode;
 
 /**
- * @Author: Simms.shi
+ * @Author: manson.zhou
  * @Date: 2019/7/10 8:21
  * @Desc: feign client 调用的异常封装
  */

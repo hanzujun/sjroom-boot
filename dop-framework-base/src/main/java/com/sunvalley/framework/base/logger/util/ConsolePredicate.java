@@ -6,9 +6,9 @@ import org.springframework.core.env.Environment;
 
 
 /**
- * @Author: Simms.shi
+ * @Author: manson.zhou
  * @Date: 2019/11/5 18:04
- * @Desc: console level 控制器
+ * @Desc: 控制台日志级别，java -DLOG_CONSOLE_LEVEL=debug
  */
 public abstract class ConsolePredicate {
 
@@ -22,9 +22,6 @@ public abstract class ConsolePredicate {
 	public static Level getAmityLevel(Environment environment, EnvLogLevel envLogLevel) {
 		String consoleLevel = environment.getProperty(LoggerConstants.CONSOLE_LOG_LEVEL, envLogLevel.getConsole());
 		Level toLevel = Level.toLevel(consoleLevel);
-		if (toLevel.intLevel() <= Level.ERROR.intLevel()) {
-			return Level.WARN;
-		}
 		return toLevel;
 	}
 
@@ -38,12 +35,8 @@ public abstract class ConsolePredicate {
 	 */
 	public static Level getFinalLevel(Environment environment, EnvLogLevel envLogLevel) {
 		String consoleLevel = environment.getProperty(LoggerConstants.CONSOLE_LOG_LEVEL, envLogLevel.getConsole());
-		Level amityLevel = getAmityLevel(environment, envLogLevel);
-		Level toLevel = Level.toLevel(consoleLevel);
-		if (toLevel.compareTo(amityLevel) != 0) {
-			return toLevel;
-		}
-		return null;
+		Level finalLevel = Level.toLevel(consoleLevel);
+		return finalLevel;
 	}
 
 

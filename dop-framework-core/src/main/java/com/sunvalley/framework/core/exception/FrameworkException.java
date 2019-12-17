@@ -5,7 +5,7 @@ import com.sunvalley.framework.core.utils.StringUtil;
 /**
  * 框架级级别异常
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 public class FrameworkException extends RuntimeException {
 

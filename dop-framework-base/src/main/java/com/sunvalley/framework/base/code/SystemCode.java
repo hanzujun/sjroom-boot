@@ -7,7 +7,7 @@ import lombok.Getter;
 /**
  * 系统内部code
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Getter
 @AllArgsConstructor

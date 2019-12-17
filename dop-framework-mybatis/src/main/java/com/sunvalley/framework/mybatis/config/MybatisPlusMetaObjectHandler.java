@@ -9,7 +9,7 @@ import org.apache.ibatis.reflection.MetaObject;
 /**
  * 全局参数填充
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Slf4j
 @RequiredArgsConstructor

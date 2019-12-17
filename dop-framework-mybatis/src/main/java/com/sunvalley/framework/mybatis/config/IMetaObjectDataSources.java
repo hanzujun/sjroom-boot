@@ -7,7 +7,7 @@ import com.sunvalley.framework.mybatis.util.UtilId;
 /**
  * MetaObject 数据来源
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 public interface IMetaObjectDataSources {
 

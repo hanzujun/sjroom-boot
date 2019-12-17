@@ -14,7 +14,7 @@ import java.util.Properties;
  * CompositePropertySourceFactory support properties and yaml file
  *
  /**
- * @Author: Simms.shi
+ * @Author: manson.zhou
  * @Date: 2019/6/3 10:52
  */
 public class CompositePropertySourceFactory extends DefaultPropertySourceFactory {

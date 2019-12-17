@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * 业务id处理
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 public abstract class AbstractBizIdMethod extends AbstractMethod {
     /**

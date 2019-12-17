@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 /**
  * 分页查询响应模型，用于业务继承
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Data
 @ApiModel(description = "分页查询模型")

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Author: Simms.shi
+ * @Author: manson.zhou
  * @Date: 2019/7/29 12:00
  * @Desc: ****
  */

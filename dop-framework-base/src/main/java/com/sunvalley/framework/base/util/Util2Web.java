@@ -273,14 +273,14 @@ public class Util2Web {
     }
 
     /**
-     * log.name=mvc.……
+     * logger.name=mvc.……
      */
     public static Logger getLogger(HttpServletRequest request) {
         return getLogger(request, "mvc");
     }
 
     /**
-     * log.name=${rootName}.……
+     * logger.name=${rootName}.……
      */
     public static Logger getLogger(HttpServletRequest request, String rootName) {
         String requestMapping = getBestMatchingPatternAttribute(request);

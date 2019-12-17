@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 /**
  * code 自动化配置
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Configuration
 @AutoConfigureAfter(ServerInfo.class)

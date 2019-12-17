@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 数据库等密码加密配置
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Configuration
 @EnableEncryptableProperties

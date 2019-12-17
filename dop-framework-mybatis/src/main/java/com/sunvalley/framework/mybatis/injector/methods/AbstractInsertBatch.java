@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 /**
  * 抽象的插入
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @AllArgsConstructor
 public class AbstractInsertBatch extends AbstractMethod {

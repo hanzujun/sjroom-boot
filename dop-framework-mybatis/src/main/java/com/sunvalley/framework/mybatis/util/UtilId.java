@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 业务id 生成工具
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @UtilityClass
 public class UtilId {

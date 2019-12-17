@@ -252,7 +252,7 @@ public class StringUtil extends org.springframework.util.StringUtils {
 	}
 
 	/**
-	 * 同 log 格式的 format 规则
+	 * 同 logger 格式的 format 规则
 	 * <p>
 	 * use: format("my name is {}, and i like {}!", "L.cm", "Java")
 	 *

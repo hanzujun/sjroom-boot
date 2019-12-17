@@ -12,7 +12,7 @@ import lombok.Setter;
 /**
  * code 翻译器
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @RequiredArgsConstructor
 public abstract class CodeTranslator {

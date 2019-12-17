@@ -38,7 +38,7 @@ public abstract class UtilLog {
     }
 
     public static Logger getLogger(String name) {
-        if (name == null || name.isEmpty()) name = "log." + name;
+        if (name == null || name.isEmpty()) name = "logger." + name;
         return loggers.computeIfAbsent(name, key -> LoggerFactory.getLogger(key));
     }
     private static Map<String, Logger> loggers = new ConcurrentHashMap<>();

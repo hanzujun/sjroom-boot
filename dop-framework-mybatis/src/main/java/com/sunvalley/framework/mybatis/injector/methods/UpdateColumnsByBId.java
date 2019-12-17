@@ -11,7 +11,7 @@ import org.apache.ibatis.mapping.SqlSource;
 /**
  * 根据 id 更新指定的字段，不进行 null 判断
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Slf4j
 public class UpdateColumnsByBId extends AbstractBizIdMethod {

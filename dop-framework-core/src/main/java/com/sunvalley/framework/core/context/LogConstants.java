@@ -3,7 +3,7 @@ package com.sunvalley.framework.core.context;
 /**
  * 日志 常量值
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 public interface LogConstants {
 	/**

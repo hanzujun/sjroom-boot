@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * SQL 默认注入器
  *
- * @author dream.lu
+ * @author manson.zhou
  * @since 2019-06-03
  */
 public class TableBIdSqlInjector extends AbstractSqlInjector {

@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * 实体模型
  *
- * @author dream.lu
+ * @author manson.zhou
  */
 @Getter
 @Setter
