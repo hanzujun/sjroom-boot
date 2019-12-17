@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 public class DemoServiceImpl implements DemoService {
 	@Override
 	public void echo() {
-		log.info("sdsdsd");
+		log.debug("manson test");
 	}
 }

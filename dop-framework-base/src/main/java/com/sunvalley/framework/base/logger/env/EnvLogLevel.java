@@ -12,14 +12,13 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-@AllArgsConstructor
 public enum EnvLogLevel {
 	/**
 	 * 各环境日志配置
 	 */
-	dev1("INFO", "INFO"),
-	dev2("INFO", "WARN"),
-	test("INFO", "WARN"),
+	dev1("DEBUG", "INFO"),
+	dev2("DEBUG", "OFF"),
+	test("INFO", "INFO"),
 	ptest("INFO", "OFF"),
 	pro("INFO", "OFF");
 
@@ -33,9 +32,6 @@ public enum EnvLogLevel {
 	 */
 	@NonNull
 	private String console;
-
-
-	private String appender = "all"; // all
 
 	/**
 	 * 环境与日志级别关联

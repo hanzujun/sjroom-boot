@@ -10,12 +10,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 
 /**
- *
+ * 只有api与rmi的链接，才需要过滤
  */
 @Slf4j
 @Configuration
 public class LoggerConfiguration {
-
 	@Bean
 	@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 	public FilterRegistrationBean mdcLogFilter() {
@@ -25,5 +24,4 @@ public class LoggerConfiguration {
 		registrationBean.addUrlPatterns(DopWebMvcConfigurer.ApiMapping, DopWebMvcConfigurer.RmiMapping);
 		return registrationBean;
 	}
-
 }
