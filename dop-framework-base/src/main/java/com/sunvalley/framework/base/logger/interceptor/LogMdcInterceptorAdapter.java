@@ -1,38 +1,36 @@
-package com.sunvalley.framework.base.logger;//package com.sunvalley.framework.base.logger;
+package com.sunvalley.framework.base.logger.interceptor;
 
-import org.slf4j.MDC;
-import org.springframework.context.annotation.Configuration;
+import com.sunvalley.framework.base.logger.contants.LogConstants;
+import com.sunvalley.framework.core.context.ContextConstants;
+import com.sunvalley.framework.core.utils.StringUtil;
+import org.apache.logging.log4j.ThreadContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
 
-@Configuration
-public class LoginInterceptor extends HandlerInterceptorAdapter {
-
-	private static String MDC_KEY_USER_NAME = "userName";
-	private static String MDC_KEY_REQ_ID = "reqId";
+public class LogMdcInterceptorAdapter extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		MDC.put(MDC_KEY_USER_NAME, "zhaozhou");
-		MDC.put(MDC_KEY_REQ_ID, UUID.randomUUID().toString());
+		String requestId = request.getHeader(ContextConstants.CALL_REQUEST_ID);
+		if (StringUtil.isBlank(requestId)) {
+			requestId = StringUtil.getUUID();
+		}
+		ThreadContext.put(LogConstants.MDC_REQUEST_ID_KEY, requestId);
 		return super.preHandle(request, response, handler);
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
-
 		super.postHandle(request, response, handler, modelAndView);
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
-		MDC.remove(MDC_KEY_USER_NAME);
-		MDC.remove(MDC_KEY_REQ_ID);
+		ThreadContext.remove(LogConstants.MDC_REQUEST_ID_KEY);
 		super.afterCompletion(request, response, handler, ex);
 	}
 

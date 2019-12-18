@@ -1,7 +1,9 @@
-package com.sunvalley.framework.base.logger;
+package com.sunvalley.framework.base.logger.config;
 
 import com.sunvalley.framework.base.boot.DopStartEventListener;
-import com.sunvalley.framework.base.logger.config.LoggerInitializerConfig;
+import com.sunvalley.framework.base.logger.LogInitializer;
+import com.sunvalley.framework.base.logger.contants.EnvLogLevel;
+import com.sunvalley.framework.base.logger.contants.LogConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
@@ -22,7 +24,7 @@ import java.util.stream.Stream;
 @Slf4j
 @Configuration
 @AutoConfigureAfter(DopStartEventListener.class)
-public class LoggerPostProcessor {
+public class LogLaunchAfterConfig {
 
 	@Async
 	@Order
@@ -37,8 +39,8 @@ public class LoggerPostProcessor {
 		EnvLogLevel envLogLevel = EnvLogLevel.of(activeProfile);
 		Properties properties = System.getProperties();
 		System.out.println("LoggerPostProcessor launch after log----->" + envLogLevel.getLaunchAfter());
-		properties.setProperty(LoggerInitializerConfig.ROOT_LOG_LEVEL, envLogLevel.getLaunchAfter());
+		properties.setProperty(LogConstants.ROOT_LOG_LEVEL, envLogLevel.getLaunchAfter());
 		// 刷新日志配置
-		LoggerInitializerConfig.refreshLogConfig(this.getClass());
+		LogInitializer.refreshLogConfig(this.getClass());
 	}
 }

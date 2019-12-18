@@ -27,8 +27,8 @@ import java.util.stream.Collectors;
 public class DopWebMvcConfigurer implements WebMvcConfigurer {
 
 
-    public final static String ApiMapping = "/api/*";
-    public final static String RmiMapping = "/rmi/*";
+    public final static String ApiMapping = "/api/**";
+    public final static String RmiMapping = "/rmi/**";
     public final static Pattern ApiPattern = Pattern.compile("^\\/api\\/.*", Pattern.CASE_INSENSITIVE);
     public final static Pattern RmiPattern = Pattern.compile("^\\/rmi\\/.*", Pattern.CASE_INSENSITIVE);
 

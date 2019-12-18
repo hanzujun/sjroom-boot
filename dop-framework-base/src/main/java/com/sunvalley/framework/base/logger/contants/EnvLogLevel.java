@@ -1,4 +1,4 @@
-package com.sunvalley.framework.base.logger;
+package com.sunvalley.framework.base.logger.contants;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -15,7 +15,7 @@ public enum EnvLogLevel {
 	/**
 	 * 各环境日志配置
 	 */
-	dev1("DEBUG", "INFO"),
+	dev1("INFO", "INFO"),
 	dev2("DEBUG", "INFO"),
 	test("INFO", "INFO"),
 	ptest("INFO", "OFF"),

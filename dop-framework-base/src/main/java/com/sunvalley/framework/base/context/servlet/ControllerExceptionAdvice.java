@@ -2,7 +2,7 @@ package com.sunvalley.framework.base.context.servlet;
 
 import com.sunvalley.framework.base.code.CodeTranslator;
 import com.sunvalley.framework.base.util.Util2Web;
-import com.sunvalley.framework.core.context.LogConstants;
+import com.sunvalley.framework.base.logger.contants.LogConstants;
 import com.sunvalley.framework.core.exception.BusinessException;
 import com.sunvalley.framework.core.exception.FeignClientException;
 import com.sunvalley.framework.core.utils.Exceptions;

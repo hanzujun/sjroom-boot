@@ -3,8 +3,6 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.sunvalley.framework.base.code.CodeAutoConfiguration,\
   com.sunvalley.framework.base.context.servlet.ControllerReqLogAspect,\
   com.sunvalley.framework.base.boot.DopStartEventListener,\
-  com.sunvalley.framework.base.logger.LoginInterceptor,\
-  com.sunvalley.framework.base.logger.MvcLoginInterceptor,\
   com.sunvalley.framework.base.context.servlet.DopServletConfiguration,\
   com.sunvalley.framework.base.context.response.ResponseAutoConfiguration,\
   com.sunvalley.framework.base.context.servlet.DopWebMvcConfigurer,\
@@ -14,6 +12,7 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.sunvalley.framework.base.context.servlet.ControllerExceptionAdvice,\
   com.sunvalley.framework.base.context.async.AsyncConfiguration,\
   com.sunvalley.framework.base.boot.EncryptAutoConfiguration,\
-  com.sunvalley.framework.base.logger.LoggerPostProcessor
+  com.sunvalley.framework.base.logger.config.LogLaunchAfterConfig,\
+  com.sunvalley.framework.base.logger.interceptor.LogWebMvcConfigurer
 org.springframework.context.ApplicationContextInitializer=\
-  com.sunvalley.framework.base.logger.LoggerInitializer
+  com.sunvalley.framework.base.logger.LogInitializer
