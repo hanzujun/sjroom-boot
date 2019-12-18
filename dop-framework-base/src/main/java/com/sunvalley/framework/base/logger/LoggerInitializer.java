@@ -1,17 +1,11 @@
 package com.sunvalley.framework.base.logger;
 
-import com.sunvalley.framework.base.logger.env.EnvLogLevel;
-import com.sunvalley.framework.base.logger.util.LoggerInitializerConfig;
+import com.sunvalley.framework.base.logger.config.LoggerInitializerConfig;
 import com.sunvalley.framework.core.utils.StringPool;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.LoggerContext;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Properties;
 import java.util.stream.Stream;
 
@@ -39,16 +33,15 @@ public class LoggerInitializer implements ApplicationContextInitializer<Configur
 		EnvLogLevel envLogLevel = EnvLogLevel.of(activeProfile);
 		// 读取系统配置的日志目录，默认为项目下 logs
 		String logBase = environment.getProperty(LoggerInitializerConfig.LOGGING_PATH, "logs");
-		Properties properties = System.getProperties();
 
+		Properties properties = System.getProperties();
 		// 设置子线程读取MDC变量
 		properties.setProperty("log4j2.isThreadContextMapInheritable", "true");
 		// 服务名设置到 sys 变量方便日志 log4j2.xml 中读取
 		properties.setProperty("spring.application.name", appName);
-
 		// 设定 root日志级别 debug
-		properties.setProperty(LoggerInitializerConfig.ROOT_LOG_LEVEL, envLogLevel.getConsole());
-		System.out.println("LoggerInitializer amityLevel console log--->" + envLogLevel.getConsole());
+		properties.setProperty(LoggerInitializerConfig.ROOT_LOG_LEVEL, envLogLevel.getLaunchBefore());
+		System.out.println("LoggerInitializer launch before log--->" + envLogLevel.getLaunchBefore());
 		//日志文件配置
 		properties.setProperty("logging.file", String.format("%s/%s/all.log", logBase, appName));
 		properties.setProperty("logging.config", "classpath:" + LoggerInitializerConfig.LOGGING_PATH_FILE);

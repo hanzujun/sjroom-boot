@@ -1,6 +1,5 @@
-package com.sunvalley.framework.base.logger.env;
+package com.sunvalley.framework.base.logger;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -17,21 +16,21 @@ public enum EnvLogLevel {
 	 * 各环境日志配置
 	 */
 	dev1("DEBUG", "INFO"),
-	dev2("DEBUG", "OFF"),
+	dev2("DEBUG", "INFO"),
 	test("INFO", "INFO"),
 	ptest("INFO", "OFF"),
 	pro("INFO", "OFF");
 
 	/**
-	 * root 日志级别
+	 * 启动前 日志级别
 	 */
 	@NonNull
-	private String root;
+	private String launchBefore;
 	/**
-	 * 控制台日志级别
+	 * 启动后 日志级别
 	 */
 	@NonNull
-	private String console;
+	private String launchAfter;
 
 	/**
 	 * 环境与日志级别关联

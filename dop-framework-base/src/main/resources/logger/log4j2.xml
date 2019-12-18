@@ -10,9 +10,6 @@
     </Properties>
     <Appenders>
         <Console name="console" target="SYSTEM_OUT" follow="true">
-            <Filters>
-                <ConsoleLevelFilter onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
             <PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}"/>
         </Console>
         <RollingRandomAccessFile name="allFile" fileName="${logPath}/all.log" filePattern="${logPath}/all.log.%d{yyyy-MM-dd}" immediateFlush="false">

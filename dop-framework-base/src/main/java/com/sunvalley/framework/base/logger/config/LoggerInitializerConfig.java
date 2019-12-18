@@ -1,4 +1,4 @@
-package com.sunvalley.framework.base.logger.util;
+package com.sunvalley.framework.base.logger.config;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.LoggerContext;
