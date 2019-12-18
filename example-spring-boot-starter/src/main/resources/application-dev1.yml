@@ -32,4 +32,4 @@ logging:
   level:
     com.sunvalley: debug
     mvc.api: debug
-    com.sunvalley.framework.feign.common.FeignServiceFacade: debug
+    github.sjroom.feign.common.FeignServiceFacade: debug

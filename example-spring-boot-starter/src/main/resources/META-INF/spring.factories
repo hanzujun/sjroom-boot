@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.sunvalley.framework.example.ExampleAutoConfigure
+  github.sjroom.example.ExampleAutoConfigure

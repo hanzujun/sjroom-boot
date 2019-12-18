@@ -4,18 +4,18 @@
 
 | 组件名                   | 描述                                | 状态    |
 | ------------------------ | ----------------------------------- | ------- |
-| dop-framework-parent     | 父依赖，版本、插件等版本和依赖管理  | 完成    |
-| dop-framework-hystrix    | hystrix组件扩展                     | 完成    |
-| dop-framework-feign      | feign组件扩展                       | 完成    |
-| dop-framework-mybatis    | mybatis 代码生成和基础依赖          | 完成    |
-| dop-framework-lock       | 基于 redis 分布式锁                 | 完成    |
-| dop-framework-idgen      | 基于 redis id生成组件               | 完成    |
-| dop-framework-core       | 核心功能组件集，utils、基础组件接口 | 完成 |
-| dop-framework-autoconfig | boot 通用功能自动配置               | 完成 |
-| dop-framework-log        | 日志组件                            | 完成 |
-| dop-framework-cache      | cache组件扩展                       | 80%     |
-| dop-framework-datasource | 多数据源读写分离                    | 0%      |
-| dop-framework-http | http 远程调用工具包                    | 完成      |
+| sjroom-parent     | 父依赖，版本、插件等版本和依赖管理  | 完成    |
+| sjroom-hystrix    | hystrix组件扩展                     | 完成    |
+| sjroom-feign      | feign组件扩展                       | 完成    |
+| sjroom-mybatis    | mybatis 代码生成和基础依赖          | 完成    |
+| sjroom-lock       | 基于 redis 分布式锁                 | 完成    |
+| sjroom-idgen      | 基于 redis id生成组件               | 完成    |
+| sjroom-core       | 核心功能组件集，utils、基础组件接口 | 完成 |
+| sjroom-autoconfig | boot 通用功能自动配置               | 完成 |
+| sjroom-log        | 日志组件                            | 完成 |
+| sjroom-cache      | cache组件扩展                       | 80%     |
+| sjroom-datasource | 多数据源读写分离                    | 0%      |
+| sjroom-http | http 远程调用工具包                    | 完成      |
 
 ## TODO
 

@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sunvalley</groupId>
-    <artifactId>dop-framework-parent</artifactId>
+    <artifactId>sjroom-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>dop-framework</name>
+    <name>sjroom</name>
     <description>新数字化运营平台微服务父项目</description>
 
     <parent>
@@ -40,11 +40,11 @@
     </properties>
 
     <modules>
-        <module>dop-framework-base</module>
-        <module>dop-framework-z-demo</module>
-        <module>dop-framework-core</module>
-        <module>dop-framework-mybatis</module>
-        <module>example-spring-boot-starter</module>
+        <module>sjroom-base</module>
+        <module>sjroom-core</module>
+        <module>sjroom-mybatis</module>
+        <module>z-sjroom-example</module>
+        <!--        <module>example-spring-boot-starter</module>-->
     </modules>
 
     <dependencies>
@@ -94,7 +94,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-core</artifactId>
+                <artifactId>sjroom-core</artifactId>
                 <version>${dop.framework.version}</version>
             </dependency>
             <dependency>
@@ -107,12 +107,6 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>20.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-feignclient</artifactId>
-                <version>${dop.framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.github.openfeign</groupId>
@@ -129,63 +123,23 @@
                 <artifactId>feign-okhttp</artifactId>
                 <version>${openfeign.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-cache</artifactId>
+                <artifactId>sjroom-base</artifactId>
                 <version>${dop.framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-base</artifactId>
+                <artifactId>sjroom-mybatis</artifactId>
                 <version>${dop.framework.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-mybatis</artifactId>
-                <version>${dop.framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-lock</artifactId>
-                <version>${dop.framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-idgen</artifactId>
-                <version>${dop.framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-swagger</artifactId>
-                <version>${dop.framework.version}</version>
-            </dependency>
+
+
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
                 <version>1.5.20</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-http</artifactId>
-                <version>${dop.framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-gateway-mvc</artifactId>
-                <version>${dop.framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-excel</artifactId>
-                <version>${dop.framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sunvalley</groupId>
-                <artifactId>dop-framework-parent</artifactId>
-                <version>${dop.framework.version}</version>
-                <!--                <type>pom</type>-->
-                <!--                <scope>import</scope>-->
-                <!--                <scope>compile</scope>-->
             </dependency>
             <!-- redisson -->
             <dependency>
