@@ -1,17 +1,6 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  github.sjroom.base.context.DopContextAutoConfiguration,\
-  github.sjroom.base.code.CodeAutoConfiguration,\
   github.sjroom.base.context.servlet.ControllerReqLogAspect,\
   github.sjroom.base.boot.DopStartEventListener,\
-  github.sjroom.base.context.servlet.DopServletConfiguration,\
-  github.sjroom.base.context.response.ResponseAutoConfiguration,\
-  github.sjroom.base.context.servlet.DopWebMvcConfigurer,\
-  github.sjroom.base.boot.DopBaseConfiguration,\
-  github.sjroom.base.env.EnvAutoConfiguration,\
-  github.sjroom.base.context.DopContextConfiguration,\
-  github.sjroom.base.context.async.AsyncConfiguration,\
-  github.sjroom.base.boot.EncryptAutoConfiguration,\
-  github.sjroom.base.logger.config.LogLaunchAfterConfig,\
-  github.sjroom.base.logger.interceptor.LogWebMvcConfigurer
+  github.sjroom.base.web.json.JsonConfiguration
 org.springframework.context.ApplicationContextInitializer=\
   github.sjroom.base.logger.LogInitializer

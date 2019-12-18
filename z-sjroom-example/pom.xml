@@ -15,10 +15,10 @@
             <groupId>com.sunvalley</groupId>
             <artifactId>sjroom-base</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.sunvalley</groupId>
-            <artifactId>sjroom-core</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.sunvalley</groupId>-->
+<!--            <artifactId>sjroom-core</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.sunvalley</groupId>
             <artifactId>sjroom-mybatis</artifactId>

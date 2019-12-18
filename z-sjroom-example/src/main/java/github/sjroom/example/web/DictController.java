@@ -32,9 +32,11 @@ public class DictController {
 
 
 	@ApiOperation("refresh")
-	@PostMapping("refresh")
-	public void refresh() {
+	@RequestMapping("refresh")
+	public Long refresh() {
+
 		demoService.echo();
+		return 1l;
 	}
 
 }

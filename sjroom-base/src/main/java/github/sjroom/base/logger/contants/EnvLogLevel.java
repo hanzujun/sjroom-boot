@@ -15,7 +15,7 @@ public enum EnvLogLevel {
 	/**
 	 * 各环境日志配置
 	 */
-	dev1("DEBUG", "DEBUG"),
+	dev1("INFO", "INFO"),
 	dev2("DEBUG", "INFO"),
 	test("INFO", "INFO"),
 	ptest("INFO", "OFF"),
