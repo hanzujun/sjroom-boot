@@ -1,2 +1,8 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.github.sjroom.web.WebConfigurer
+  github.sjroom.common.context.StartEventListener,\
+  github.sjroom.common.logger.config.LogLaunchAfterConfig,\
+  github.sjroom.common.logger.ControllerReqLogAspect,\
+  github.sjroom.common.exception.ControllerExceptionAdvice,\
+  github.sjroom.common.web.JsonConfiguration
+org.springframework.context.ApplicationContextInitializer=\
+  github.sjroom.common.logger.LogInitializer
