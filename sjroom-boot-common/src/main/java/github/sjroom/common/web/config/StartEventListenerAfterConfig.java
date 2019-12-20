@@ -1,9 +1,7 @@
-package github.sjroom.common.logger.config;
+package github.sjroom.common.web.config;
 
-import github.sjroom.common.context.StartEventListener;
 import github.sjroom.common.logger.LogInitializer;
 import github.sjroom.common.logger.contants.EnvLogLevel;
-import github.sjroom.common.logger.contants.LogConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
@@ -13,7 +11,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.Async;
 
-import java.util.Properties;
 import java.util.stream.Stream;
 
 /**
@@ -23,8 +20,8 @@ import java.util.stream.Stream;
  */
 @Slf4j
 @Configuration
-@AutoConfigureAfter(StartEventListener.class)
-public class LogLaunchAfterConfig {
+@AutoConfigureAfter(StartEventListenerConfig.class)
+public class StartEventListenerAfterConfig {
 
     @Async
     @Order

@@ -1,8 +1,10 @@
-package github.sjroom.common.logger;
+package github.sjroom.common.web;
 
-import github.sjroom.common.constant.IResultConstants;
 import github.sjroom.common.context.ContextConstants;
-import github.sjroom.common.util.*;
+import github.sjroom.common.logger.LogInitializer;
+import github.sjroom.common.util.JsonUtil;
+import github.sjroom.common.util.ObjectUtil;
+import github.sjroom.common.util.WebUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -33,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 @Configuration
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-public class ControllerReqLogAspect {
+public class AccessWebAspect {
 
     /**
      * AOP 环切 控制器 R 返回值

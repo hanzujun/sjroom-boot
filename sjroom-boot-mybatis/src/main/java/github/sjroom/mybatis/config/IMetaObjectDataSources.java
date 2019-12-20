@@ -1,7 +1,7 @@
 package github.sjroom.mybatis.config;
 
 import github.sjroom.common.context.plat.PlatContextHolders;
-import github.sjroom.mybatis.util.UtilId;
+import github.sjroom.common.util.UtilId;
 
 /**
  * MetaObject 数据来源

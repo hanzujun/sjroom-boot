@@ -1,6 +1,5 @@
 package github.sjroom.mybatis.util;
 
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
 import github.sjroom.mybatis.annotation.TableBId;
 import lombok.experimental.UtilityClass;
@@ -14,7 +13,7 @@ import java.util.List;
  * @author manson.zhou
  */
 @UtilityClass
-public class UtilId {
+public class UtilBId {
 
 	/**
 	 * 获取 bid 属性名
@@ -31,14 +30,5 @@ public class UtilId {
 			}
 		}
 		return fieldName;
-	}
-
-	/**
-	 * 生成业务id
-	 *
-	 * @return 业务id
-	 */
-	public static Long getBId() {
-		return IdWorker.getId();
 	}
 }

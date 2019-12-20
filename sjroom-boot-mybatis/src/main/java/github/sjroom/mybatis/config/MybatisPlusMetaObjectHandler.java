@@ -1,7 +1,7 @@
 package github.sjroom.mybatis.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import github.sjroom.mybatis.util.UtilId;
+import github.sjroom.mybatis.util.UtilBId;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
@@ -38,7 +38,7 @@ public class MybatisPlusMetaObjectHandler implements MetaObjectHandler {
 		Object originalObject = metaObject.getOriginalObject();
 		Class<?> modelClass = originalObject.getClass();
 		// 获取 bid 的属性名
-		String fieldName = UtilId.getBIdFieldName(modelClass);
+		String fieldName = UtilBId.getBIdFieldName(modelClass);
 		if (fieldName == null) {
 			return;
 		}

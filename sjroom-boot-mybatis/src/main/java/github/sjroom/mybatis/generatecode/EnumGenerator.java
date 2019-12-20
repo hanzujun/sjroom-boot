@@ -1,7 +1,7 @@
 package github.sjroom.mybatis.generatecode;
 
 import github.sjroom.common.util.StringPool;
-import github.sjroom.mybatis.util.UtilId;
+import github.sjroom.common.util.UtilId;
 import lombok.Data;
 
 import java.util.List;

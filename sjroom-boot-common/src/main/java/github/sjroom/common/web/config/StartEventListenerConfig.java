@@ -1,4 +1,4 @@
-package github.sjroom.common.context;
+package github.sjroom.common.web.config;
 
 import github.sjroom.common.util.ClassUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  */
 @Slf4j
 @Configuration
-public class StartEventListener {
+public class StartEventListenerConfig {
 
     @Async
     @Order

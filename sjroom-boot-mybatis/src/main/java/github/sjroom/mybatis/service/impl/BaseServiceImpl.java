@@ -11,7 +11,7 @@ import github.sjroom.common.util.StringUtil;
 import github.sjroom.mybatis.injector.BizSqlMethod;
 import github.sjroom.mybatis.mapper.IMapper;
 import github.sjroom.mybatis.service.BaseService;
-import github.sjroom.mybatis.util.UtilId;
+import github.sjroom.mybatis.util.UtilBId;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.transaction.annotation.Transactional;
@@ -108,7 +108,7 @@ public class BaseServiceImpl<M extends IMapper<T>, T> extends ServiceImpl<M, T> 
 			for (T bIdEntity : entityList) {
 				if (entity == null) {
 					entity = bIdEntity;
-					bIdFieldName = UtilId.getBIdFieldName(entity.getClass());
+					bIdFieldName = UtilBId.getBIdFieldName(entity.getClass());
 				}
 				if (StringUtil.isBlank(bIdFieldName)) {
 					throw new MybatisPlusException("not found @TableBId in entity");

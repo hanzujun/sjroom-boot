@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.metadata.TableInfoHelper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.sql.SqlScriptUtils;
 import github.sjroom.common.util.ObjectUtil;
-import github.sjroom.mybatis.util.UtilId;
+import github.sjroom.mybatis.util.UtilBId;
 import org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator;
 import org.apache.ibatis.executor.keygen.KeyGenerator;
 import org.apache.ibatis.executor.keygen.NoKeyGenerator;
@@ -31,7 +31,7 @@ public class InsertBizId extends Insert {
 	@Override
 	public MappedStatement injectMappedStatement(Class<?> mapperClass, Class<?> modelClass, TableInfo tableInfo) {
 		// 业务id属性
-		String bIdFieldName = UtilId.getBIdFieldName(modelClass);
+		String bIdFieldName = UtilBId.getBIdFieldName(modelClass);
 		if (bIdFieldName == null) {
 			return super.injectMappedStatement(mapperClass, modelClass, tableInfo);
 		}

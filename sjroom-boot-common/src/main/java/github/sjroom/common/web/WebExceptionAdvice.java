@@ -1,8 +1,9 @@
-package github.sjroom.common.exception;
+package github.sjroom.common.web;
 
 import github.sjroom.common.constant.CommonStatusEnum;
 import github.sjroom.common.constant.IResultConstants;
 import github.sjroom.common.context.ContextConstants;
+import github.sjroom.common.exception.BusinessException;
 import github.sjroom.common.logger.LogInitializer;
 import github.sjroom.common.logger.contants.LogConstants;
 import github.sjroom.common.util.CollectionUtil;
@@ -36,7 +37,7 @@ import java.util.Optional;
 @Configuration
 @RestControllerAdvice
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-public class ControllerExceptionAdvice {
+public class WebExceptionAdvice {
 
     @ExceptionHandler(Exception.class)
     @ResponseBody

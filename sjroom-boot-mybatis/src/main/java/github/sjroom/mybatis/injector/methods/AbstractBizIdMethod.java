@@ -3,7 +3,7 @@ package github.sjroom.mybatis.injector.methods;
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
-import github.sjroom.mybatis.util.UtilId;
+import github.sjroom.mybatis.util.UtilBId;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -33,7 +33,7 @@ public abstract class AbstractBizIdMethod extends AbstractMethod {
     }
 
     private TableFieldInfo getTableFieldInfo(Class<?> modelClass, TableInfo tableInfo) {
-        String fieldName = UtilId.getBIdFieldName(modelClass);
+        String fieldName = UtilBId.getBIdFieldName(modelClass);
         if (fieldName == null) {
             return null;
         }

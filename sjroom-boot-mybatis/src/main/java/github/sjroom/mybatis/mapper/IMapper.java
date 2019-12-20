@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.core.toolkit.support.SerializedLambda;
 import github.sjroom.common.util.BeanUtil;
 import github.sjroom.common.util.StringUtil;
 import github.sjroom.mybatis.injector.methods.EntityItem;
-import github.sjroom.mybatis.util.UtilId;
+import github.sjroom.mybatis.util.UtilBId;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.reflection.property.PropertyNamer;
 
@@ -134,7 +134,7 @@ public interface IMapper<T> extends BaseMapper<T> {
 		for (T e : entityList) {
 			if (entity == null) {
 				entity = e;
-				bIdFieldName = UtilId.getBIdFieldName(e.getClass());
+				bIdFieldName = UtilBId.getBIdFieldName(e.getClass());
 			}
 			if (StringUtil.isBlank(bIdFieldName)) {
 				throw new MybatisPlusException("not found @TableBId in entity");
