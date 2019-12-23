@@ -122,34 +122,6 @@ public interface IMapper<T> extends BaseMapper<T> {
 	int updateBatchByBIds(@Param(Constants.ENTITY) T entity, @Param(Constants.COLLECTION) Collection<? extends Serializable> idList);
 
 	/**
-	 * 根据业务 ID 批量修改
-	 *
-	 * @param entityList 实体列表
-	 * @return 结果数
-	 */
-	default int updateBatchByBIds(List<T> entityList) {
-		T entity = null;
-		String bIdFieldName = null;
-		Set<Serializable> idList = new HashSet<>();
-		for (T e : entityList) {
-			if (entity == null) {
-				entity = e;
-				bIdFieldName = UtilBId.getBIdFieldName(e.getClass());
-			}
-			if (StringUtil.isBlank(bIdFieldName)) {
-				throw new MybatisPlusException("not found @TableBId in entity");
-			}
-			// 获取 bizId 的值
-			Serializable bId = (Serializable) BeanUtil.getProperty(e, bIdFieldName);
-			if (bId == null) {
-				throw new MybatisPlusException("@TableBId bizId is null in entityList");
-			}
-			idList.add(bId);
-		}
-		return updateBatchByBIds(entity, idList);
-	}
-
-	/**
 	 * 根据业务 ID 删除
 	 *
 	 * @param id 主键ID

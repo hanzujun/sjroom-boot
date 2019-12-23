@@ -16,6 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 /**
  * <B>说明： 控制器</B><BR>
  *
@@ -60,6 +64,13 @@ public class AccountController {
     @ApiOperation("更新")
     @PostMapping("modify")
     public void modify(@RequestBody @Validated AccountReqVo accountReqVo) {
+
+        List<Account> accounts = accountService.list();
+        Set<Long> accountIds = accounts.stream().map(Account::getAccountId).collect(Collectors.toSet());
+        Account account = new Account();
+        account.setStatus(0);
+        account.setCreatedBy(1l);
+        accountService.updateBatchByBIds(account, accountIds);
     }
 
 
