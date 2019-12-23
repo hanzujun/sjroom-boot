@@ -43,8 +43,6 @@ public class AccountController {
     @ApiOperation("查看分页")
     @PostMapping("list")
     public R page(@RequestBody AccountPageReqVo reqVo) {
-        log.info("ccc");
-        AssertUtil.throwFail(ApiCoreCode.NO_CALL_CONTEXT,"manson");
         LambdaQueryWrapper<Account> wrapper = new LambdaQueryWrapper<Account>()
                 .eq(Account::getId, 33l);
         R r = R.ok(accountService.list());

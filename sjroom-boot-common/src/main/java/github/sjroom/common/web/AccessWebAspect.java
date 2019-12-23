@@ -87,7 +87,7 @@ public class AccessWebAspect {
     }
 
     private void refreshLogConfig(HttpServletRequest request) {
-        String xDebug = request.getHeader(ContextConstants.X_DEBUG).toLowerCase();
+        String xDebug = request.getHeader(ContextConstants.X_DEBUG);
         if (ObjectUtil.isNotEmpty(xDebug)) {
             LogLevel logLevel = null;
             try {
