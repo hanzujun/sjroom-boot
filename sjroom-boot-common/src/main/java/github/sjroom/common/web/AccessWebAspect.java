@@ -93,7 +93,7 @@ public class AccessWebAspect {
             try {
                 logLevel = LogLevel.valueOf(request.getHeader(ContextConstants.X_DEBUG));
             } catch (Exception ex) {
-                log.warn("logLevel is empty ex:{}", ex);
+
             }
             if (ObjectUtil.isNotNull(logLevel)) {
                 LogInitializer.refreshLogConfig(xDebug, this.getClass());

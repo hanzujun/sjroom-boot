@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import github.sjroom.mybatis.service.impl.BaseServiceImpl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <B>说明：服务实现</B><BR>
  *
@@ -23,5 +26,13 @@ public class AccountServiceImpl extends BaseServiceImpl<IAccountDao, Account> im
     @Autowired
     private IAccountDao accountDao;
 
+    @Override
+    public Map<Integer, String> mapStatus() {
+        Map<Integer, String> mapStatus = new HashMap<>();
+        mapStatus.put(1, "11");
+        mapStatus.put(2, "22");
+        mapStatus.put(3, "33");
+        return mapStatus;
+    }
 }
 

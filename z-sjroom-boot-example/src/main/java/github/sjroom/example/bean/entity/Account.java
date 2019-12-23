@@ -1,10 +1,16 @@
 package github.sjroom.example.bean.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import github.sjroom.example.dao.comp.AccountDaoCompImpl;
+import github.sjroom.example.service.IAccountService;
+import github.sjroom.example.service.impl.AccountServiceImpl;
+import github.sjroom.mybatis.annotation.FillField;
+import github.sjroom.mybatis.annotation.FillFieldName;
 import github.sjroom.mybatis.core.BaseEntity;
 import github.sjroom.mybatis.annotation.TableBId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 import java.util.Date;
 
 

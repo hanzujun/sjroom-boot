@@ -9,6 +9,7 @@ import github.sjroom.example.bean.entity.Account;
 import github.sjroom.example.bean.vo.*;
 import github.sjroom.example.service.IAccountService;
 import github.sjroom.example.service.IAccountServiceComp;
+import github.sjroom.mybatis.annotation.FillField;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -46,11 +47,9 @@ public class AccountController {
 
     @ApiOperation("查看分页")
     @PostMapping("list")
-    public R page(@RequestBody AccountPageReqVo reqVo) {
-        LambdaQueryWrapper<Account> wrapper = new LambdaQueryWrapper<Account>()
-                .eq(Account::getId, 33l);
-        R r = R.ok(accountService.list());
-        return r;
+    @FillField
+    public List<AccountRespVo> page(@RequestBody AccountPageReqVo reqVo) {
+        return BeanUtil.copy(accountService.list(), AccountRespVo.class);
     }
 
     @ApiOperation("创建")

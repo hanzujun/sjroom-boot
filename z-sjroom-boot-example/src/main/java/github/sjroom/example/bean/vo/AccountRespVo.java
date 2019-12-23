@@ -1,8 +1,11 @@
 package github.sjroom.example.bean.vo;
 
+import github.sjroom.example.service.impl.AccountServiceImpl;
+import github.sjroom.mybatis.annotation.FillFieldName;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
 import java.util.Date;
 
 /**
@@ -13,7 +16,7 @@ import java.util.Date;
  * @date 2019-12-16 14:14
  */
 @Data
-public class AccountRespVo  {
+public class AccountRespVo {
 
     @ApiModelProperty("代理主键")
     private Long id;
@@ -65,6 +68,10 @@ public class AccountRespVo  {
 
     @ApiModelProperty("登录状态")
     private Integer loginStatus;
+
+    @ApiModelProperty("登录状态")
+    @FillFieldName(invoke = AccountServiceImpl.class, methodName = "mapStatus")
+    private String loginStatusName;
 
     @ApiModelProperty("最近登录时间")
     private Date lastLoginTime;
