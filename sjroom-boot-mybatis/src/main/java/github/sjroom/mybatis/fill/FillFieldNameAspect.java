@@ -4,6 +4,8 @@ package github.sjroom.mybatis.fill;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import github.sjroom.common.context.SpringExtensionLoader;
+import github.sjroom.common.exception.BusinessException;
 import github.sjroom.common.util.CollectionUtil;
 import github.sjroom.common.util.JsonUtil;
 import github.sjroom.common.util.StringPool;
@@ -79,12 +81,18 @@ public class FillFieldNameAspect {
                 if (Objects.isNull(fillFieldName)) {
                     continue;
                 }
-                Class invokeClass = fillFieldName.invoke();
-                String methodName = fillFieldName.methodName();
-                String getFieldValue = "get" + StringUtil.capitalize(field.getName().replace("Name", ""));
-                fillFieldNameObject.getFieldInfoSet().add(new FillFieldNameObject.FieldInfo(getFieldValue, field));
-//                classFillFieldNameObjectMap.put(retValObjectClass, fillFieldNameObject);
+                if (!field.getName().endsWith("Name")) {
+                    continue;
+                }
+                //找到对应的字段值,才能进行填充
+                String getFieldValue = field.getName().substring(0, field.getName().length() - 4);
+                Optional<Field> fieldOptional = Arrays.stream(fields).filter(x -> x.getName().equals(getFieldValue)).findFirst();
+                if (!fieldOptional.isPresent()) {
+                    continue;
+                }
 
+                fillFieldNameObject.getFieldInfoSet().add(new FillFieldNameObject.FieldInfo(fieldOptional.get(), field, fillFieldName.invoke(), fillFieldName.methodName(), new HashSet<>(), new HashMap()));
+                classFillFieldNameObjectMap.put(retValObjectClass, fillFieldNameObject);
             }
         } else {
             fillFieldNameObject = classFillFieldNameObjectMap.get(retValObjectClass);
@@ -94,31 +102,51 @@ public class FillFieldNameAspect {
     }
 
 
+    /**
+     * 开始反射赋值
+     *
+     * @param retCollection
+     * @param fillFieldNameObject
+     */
     private void fillVal(Collection retCollection, FillFieldNameObject fillFieldNameObject) {
         if (CollectionUtil.isEmpty(fillFieldNameObject.getFieldInfoSet())) {
             return;
         }
 
-        Set<Long> userIdSet = Sets.newHashSetWithExpectedSize(retCollection.size());
-
+        // 获取所有值,将其变成集合
         retCollection.forEach(o -> fillFieldNameObject.getFieldInfoSet().forEach(fieldInfo -> {
-            Field field = fieldInfo.getField();
-            field.setAccessible(true);
-
+            Field fieldValue = fieldInfo.getFieldValue();
+            Field fieldText = fieldInfo.getFieldText();
+            fieldValue.setAccessible(true);
+            fieldText.setAccessible(true);
             try {
-                Method fieldedMethod = o.getClass().getMethod(fieldInfo.getFieldName());
-                Object fieldValue = fieldedMethod.invoke(o);
-
-//                Method fieldedMethod1 = o.getClass().getMethod(fieldInfo.getFieldName(), String.class);
-//                fieldedMethod1.invoke(o, fieldValue);
-                field.set(o, String.valueOf(fieldValue));
-            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                log.error("fillVal error cause:", e);
+                fieldInfo.setInvokeArgs(null);
+                fieldInfo.getInvokeArgs().add(fieldInfo.getFieldValue().get(o));
+            } catch (IllegalAccessException e) {
+                throw new BusinessException(e);
             }
         }));
 
-        if (CollectionUtil.isEmpty(userIdSet)) {
-            return;
-        }
+        // 获取所有值,调用第三方法返回的值
+        fillFieldNameObject.getFieldInfoSet().forEach(fieldInfo -> {
+            try {
+                Object invokeClass = SpringExtensionLoader.getSpringBean(fieldInfo.getInvokeClass());
+                Method thirdPartyMethod = invokeClass.getClass().getMethod(fieldInfo.getInvokeMethod(), Set.class);
+                fieldInfo.setMapData((Map) thirdPartyMethod.invoke(invokeClass, fieldInfo.getInvokeArgs()));
+            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+                throw new BusinessException(e);
+            }
+        });
+
+        //进行赋值操作.
+        retCollection.forEach(o -> fillFieldNameObject.getFieldInfoSet().forEach(fieldInfo -> {
+            Field fieldValue = fieldInfo.getFieldValue();
+            Field fieldText = fieldInfo.getFieldText();
+            try {
+                fieldText.set(o, fieldInfo.getMapData().getOrDefault(fieldValue.get(o), StringPool.EMPTY));
+            } catch (IllegalAccessException e) {
+                throw new BusinessException(e);
+            }
+        }));
     }
 }

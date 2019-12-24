@@ -5,6 +5,7 @@ import github.sjroom.mybatis.service.BaseService;
 
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * <B>说明：服务</B><BR>
@@ -15,5 +16,7 @@ import java.util.Map;
  */
 public interface IAccountService extends BaseService<Account> {
 
-    Map<Integer, String> mapStatus();
+
+    Map<Integer, String> mapStatus(Set<Long> ids);
 }
+

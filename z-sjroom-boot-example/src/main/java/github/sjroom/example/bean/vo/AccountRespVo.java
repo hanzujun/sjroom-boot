@@ -1,5 +1,6 @@
 package github.sjroom.example.bean.vo;
 
+import github.sjroom.example.service.IAccountService;
 import github.sjroom.example.service.impl.AccountServiceImpl;
 import github.sjroom.mybatis.annotation.FillFieldName;
 import io.swagger.annotations.ApiModelProperty;
@@ -59,6 +60,9 @@ public class AccountRespVo {
 
     @ApiModelProperty("状态")
     private Integer status;
+    @ApiModelProperty("状态名称")
+    @FillFieldName(invoke = IAccountService.class, methodName = "mapStatus")
+    private String statusName;
 
     @ApiModelProperty("是否已分配公司（0.未分配 1.已分配）")
     private Integer distribution;
@@ -70,7 +74,7 @@ public class AccountRespVo {
     private Integer loginStatus;
 
     @ApiModelProperty("登录状态")
-    @FillFieldName(invoke = AccountServiceImpl.class, methodName = "mapStatus")
+    @FillFieldName(invoke = IAccountService.class, methodName = "mapStatus")
     private String loginStatusName;
 
     @ApiModelProperty("最近登录时间")

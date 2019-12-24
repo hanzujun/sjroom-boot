@@ -11,6 +11,7 @@ import github.sjroom.mybatis.service.impl.BaseServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * <B>说明：服务实现</B><BR>
@@ -27,7 +28,7 @@ public class AccountServiceImpl extends BaseServiceImpl<IAccountDao, Account> im
     private IAccountDao accountDao;
 
     @Override
-    public Map<Integer, String> mapStatus() {
+    public Map<Integer, String> mapStatus(Set<Long> ids) {
         Map<Integer, String> mapStatus = new HashMap<>();
         mapStatus.put(1, "11");
         mapStatus.put(2, "22");
