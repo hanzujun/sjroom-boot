@@ -15,10 +15,7 @@ import github.sjroom.mybatis.plugins.PerformanceInterceptor;
 import org.apache.ibatis.type.EnumTypeHandler;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 
 import java.time.LocalDate;
@@ -114,5 +111,4 @@ public class MybatisPlusConfig {
 
 		}
 	}
-
 }

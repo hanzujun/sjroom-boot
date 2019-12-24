@@ -1,10 +1,10 @@
 package github.sjroom.common.web;
 
+import com.google.common.collect.Lists;
+import github.sjroom.common.R;
 import github.sjroom.common.context.ContextConstants;
 import github.sjroom.common.logger.LogInitializer;
-import github.sjroom.common.util.JsonUtil;
-import github.sjroom.common.util.ObjectUtil;
-import github.sjroom.common.util.WebUtil;
+import github.sjroom.common.util.*;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -16,8 +16,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -69,20 +68,26 @@ public class AccessWebAspect {
         String requestURI = request != null ? request.getRequestURI() : null;
         String requestMethod = request != null ? request.getMethod() : null;
         long startNs = System.nanoTime();
-
-
-        // 打印执行时间
-        printRequestLog(request, requestURI, requestMethod);
         Class<?> returnType = method.getReturnType();
         Object result = null;
-        refreshLogConfig(request);
+
+        if (AccessWebConfigurer.isApiRequest(request)
+                || AccessWebConfigurer.isRmiRequest(request)) {
+            // 打印执行时间
+            printRequestLog(request, requestURI, requestMethod);
+            refreshLogConfig(request);
+        }
         if (void.class == returnType) {
             point.proceed();
         } else {
             result = point.proceed();
         }
-        refreshLogConfig(request);
-        printResponseLog(requestURI, requestMethod, startNs, returnType, result);
+        if (AccessWebConfigurer.isApiRequest(request)
+                || AccessWebConfigurer.isRmiRequest(request)) {
+            refreshLogConfig(request);
+            printResponseLog(requestURI, requestMethod, startNs, returnType, result);
+        }
+
         return result;
     }
 

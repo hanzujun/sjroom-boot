@@ -59,10 +59,8 @@ public class AccountRespVo {
     private Integer volumeUnit;
 
     @ApiModelProperty("状态")
+    @FillFieldName(invoke = IAccountService.class, invokeMethod = "mapStatus")
     private Integer status;
-    @ApiModelProperty("状态名称")
-    @FillFieldName(invoke = IAccountService.class, methodName = "mapStatus")
-    private String statusName;
 
     @ApiModelProperty("是否已分配公司（0.未分配 1.已分配）")
     private Integer distribution;
@@ -71,11 +69,8 @@ public class AccountRespVo {
     private Integer landed;
 
     @ApiModelProperty("登录状态")
+    @FillFieldName(invoke = IAccountService.class, invokeMethod = "mapStatus")
     private Integer loginStatus;
-
-    @ApiModelProperty("登录状态")
-    @FillFieldName(invoke = IAccountService.class, methodName = "mapStatus")
-    private String loginStatusName;
 
     @ApiModelProperty("最近登录时间")
     private Date lastLoginTime;

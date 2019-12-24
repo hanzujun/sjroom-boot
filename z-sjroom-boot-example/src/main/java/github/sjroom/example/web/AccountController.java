@@ -1,6 +1,7 @@
 package github.sjroom.example.web;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import github.sjroom.common.code.ApiCoreCode;
 import github.sjroom.common.util.AssertUtil;
 import github.sjroom.common.util.BeanUtil;
@@ -10,6 +11,8 @@ import github.sjroom.example.bean.vo.*;
 import github.sjroom.example.service.IAccountService;
 import github.sjroom.example.service.IAccountServiceComp;
 import github.sjroom.mybatis.annotation.FillField;
+import github.sjroom.mybatis.page.PageResult;
+import github.sjroom.mybatis.page.PageResultUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -45,11 +48,18 @@ public class AccountController {
         return new AccountRespVo();
     }
 
-    @ApiOperation("查看分页")
+    @ApiOperation("查看list")
     @PostMapping("list")
     @FillField
-    public List<AccountRespVo> page(@RequestBody AccountPageReqVo reqVo) {
+    public List<AccountRespVo> list() {
         return BeanUtil.copy(accountService.list(), AccountRespVo.class);
+    }
+
+    @ApiOperation("查看分页")
+    @PostMapping("page")
+    @FillField
+    public PageResult<AccountRespVo> page() {
+        return PageResultUtil.toPageResult(accountService.page(new Page<>()), AccountRespVo.class);
     }
 
     @ApiOperation("创建")

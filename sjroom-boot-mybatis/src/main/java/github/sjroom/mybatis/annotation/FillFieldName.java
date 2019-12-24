@@ -21,6 +21,6 @@ public @interface FillFieldName {
 	 * 调用的方法名
 	 *
 	 */
-	String methodName() default "";
+	String invokeMethod() default "";
 
 }

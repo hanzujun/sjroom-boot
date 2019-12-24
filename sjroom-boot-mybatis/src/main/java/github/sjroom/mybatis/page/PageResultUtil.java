@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  *
  * @author dream.lu
  */
-public class PageUtil {
+public class PageResultUtil {
     /**
      * 过滤 sql，由于 mybatis-plus 的 order 排序字段为直接拼接，有注入风险
      */
@@ -144,7 +144,7 @@ public class PageUtil {
             return paramList;
         }
         return paramList.stream()
-                .map(PageUtil::filter)
+                .map(PageResultUtil::filter)
                 .collect(Collectors.toList());
     }
 

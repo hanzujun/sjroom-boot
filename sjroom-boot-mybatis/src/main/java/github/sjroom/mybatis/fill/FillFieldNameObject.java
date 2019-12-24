@@ -24,11 +24,7 @@ public class FillFieldNameObject {
         /**
          * 赋值字段
          */
-        private Field fieldValue;
-        /**
-         * 显示字段
-         */
-        private Field fieldText;
+        private Field field;
         /**
          * 调用的第三方class
          */

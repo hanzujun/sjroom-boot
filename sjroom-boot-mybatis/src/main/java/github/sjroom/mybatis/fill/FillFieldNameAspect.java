@@ -6,19 +6,20 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import github.sjroom.common.context.SpringExtensionLoader;
 import github.sjroom.common.exception.BusinessException;
-import github.sjroom.common.util.CollectionUtil;
-import github.sjroom.common.util.JsonUtil;
-import github.sjroom.common.util.StringPool;
-import github.sjroom.common.util.StringUtil;
+import github.sjroom.common.util.*;
+import github.sjroom.common.web.AccessWebConfigurer;
 import github.sjroom.mybatis.annotation.FillFieldName;
 import github.sjroom.mybatis.page.PageResult;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -41,30 +42,34 @@ public class FillFieldNameAspect {
      * 1.拦截FillFieldNameText.class
      * 2.从返回值对象上获取字段注解信息
      * 3.循环返回值设置字典值
-     * 4.如果有用户注解，再次循环设置用户名，否则直接返回
      * <p>
      * This is the method which I would like to execute after a selected method execution.
      */
-    @AfterReturning(pointcut = "@annotation(github.sjroom.mybatis.annotation.FillField))", returning = "retVal")
-    public void afterReturningAdvice(JoinPoint jp, Object retVal) {
-        MethodSignature methodSignature = (MethodSignature) jp.getSignature();
-        Method method = methodSignature.getMethod();
-        if (Objects.isNull(method)) {
-            return;
+    @Around(value = "@annotation(github.sjroom.mybatis.annotation.FillField))")
+    public Object aroundApi(ProceedingJoinPoint point) throws Throwable {
+        MethodSignature ms = (MethodSignature) point.getSignature();
+        Method method = ms.getMethod();
+        Class<?> returnType = method.getReturnType();
+        Object retVal = null;
+
+        if (void.class == returnType) {
+            point.proceed();
+            return retVal;
         }
+        retVal = point.proceed();
 
         Object retValObject;
         Collection retCollection;
         if (retVal instanceof Collection) {
             retCollection = (Collection) retVal;
             if (CollectionUtil.isEmpty(retCollection)) {
-                return;
+                return null;
             }
             retValObject = retCollection.iterator().next();
         } else if (retVal instanceof PageResult) {
             retCollection = ((PageResult) retVal).getRecords();
             if (CollectionUtil.isEmpty(retCollection)) {
-                return;
+                return null;
             }
             retValObject = retCollection.iterator().next();
         } else {
@@ -81,47 +86,34 @@ public class FillFieldNameAspect {
                 if (Objects.isNull(fillFieldName)) {
                     continue;
                 }
-                if (!field.getName().endsWith("Name")) {
-                    continue;
-                }
-                //找到对应的字段值,才能进行填充
-                String getFieldValue = field.getName().substring(0, field.getName().length() - 4);
-                Optional<Field> fieldOptional = Arrays.stream(fields).filter(x -> x.getName().equals(getFieldValue)).findFirst();
-                if (!fieldOptional.isPresent()) {
-                    continue;
-                }
-
-                fillFieldNameObject.getFieldInfoSet().add(new FillFieldNameObject.FieldInfo(fieldOptional.get(), field, fillFieldName.invoke(), fillFieldName.methodName(), new HashSet<>(), new HashMap()));
+                fillFieldNameObject.getFieldInfoSet().add(new FillFieldNameObject.FieldInfo(field, fillFieldName.invoke(),
+                        fillFieldName.invokeMethod(), new HashSet<>(), new HashMap()));
                 classFillFieldNameObjectMap.put(retValObjectClass, fillFieldNameObject);
             }
         } else {
             fillFieldNameObject = classFillFieldNameObjectMap.get(retValObjectClass);
         }
 
-        fillVal(retCollection, fillFieldNameObject);
+        return fillVal(retVal, retCollection, fillFieldNameObject);
     }
 
 
     /**
      * 开始反射赋值
      *
-     * @param retCollection
      * @param fillFieldNameObject
      */
-    private void fillVal(Collection retCollection, FillFieldNameObject fillFieldNameObject) {
+    private Object fillVal(Object retVal, Collection retCollection, FillFieldNameObject fillFieldNameObject) {
         if (CollectionUtil.isEmpty(fillFieldNameObject.getFieldInfoSet())) {
-            return;
+            return retVal;
         }
 
         // 获取所有值,将其变成集合
         retCollection.forEach(o -> fillFieldNameObject.getFieldInfoSet().forEach(fieldInfo -> {
-            Field fieldValue = fieldInfo.getFieldValue();
-            Field fieldText = fieldInfo.getFieldText();
-            fieldValue.setAccessible(true);
-            fieldText.setAccessible(true);
+            Field field = fieldInfo.getField();
+            field.setAccessible(true);
             try {
-                fieldInfo.setInvokeArgs(null);
-                fieldInfo.getInvokeArgs().add(fieldInfo.getFieldValue().get(o));
+                fieldInfo.getInvokeArgs().add(field.get(o));
             } catch (IllegalAccessException e) {
                 throw new BusinessException(e);
             }
@@ -138,15 +130,32 @@ public class FillFieldNameAspect {
             }
         });
 
+
         //进行赋值操作.
-        retCollection.forEach(o -> fillFieldNameObject.getFieldInfoSet().forEach(fieldInfo -> {
-            Field fieldValue = fieldInfo.getFieldValue();
-            Field fieldText = fieldInfo.getFieldText();
-            try {
-                fieldText.set(o, fieldInfo.getMapData().getOrDefault(fieldValue.get(o), StringPool.EMPTY));
-            } catch (IllegalAccessException e) {
-                throw new BusinessException(e);
-            }
-        }));
+        List<Object> objects = new ArrayList<>();
+        retCollection.forEach(o -> {
+            Map<String, Object> propertyMap = new HashMap<>();
+            fillFieldNameObject.getFieldInfoSet().forEach(fieldInfo -> {
+                try {
+                    Field field = fieldInfo.getField();
+                    String fieldText = field.getName().endsWith("id") ? field.getName().substring(0, field.getName().lastIndexOf("id")) : field.getName();
+                    fieldText = fieldText + "Name";
+                    propertyMap.put(fieldText, fieldInfo.getMapData().getOrDefault(field.get(o), StringPool.EMPTY));
+                } catch (IllegalAccessException e) {
+                    throw new BusinessException(e);
+                }
+            });
+            Object object = AddPropertiesUtil.getTarget(o, propertyMap);
+            objects.add(object);
+        });
+
+        if (retVal instanceof Collection) {
+            return objects;
+        } else if (retVal instanceof PageResult) {
+            ((PageResult) retVal).setRecords(objects);
+            return retVal;
+        } else {
+            return objects.get(0);
+        }
     }
 }

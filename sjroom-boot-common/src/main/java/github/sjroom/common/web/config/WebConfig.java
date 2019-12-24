@@ -31,7 +31,7 @@ public class WebConfig {
      * @return
      */
     @Bean
-    public AccessWebAspect accessLogAspect() {
+    public AccessWebAspect accessWebAspect() {
         return new AccessWebAspect();
     }
 
